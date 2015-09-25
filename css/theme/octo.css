@@ -288,3 +288,9 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #00008B; }
+
+body {
+  background-image: url("./images/octo.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: contain; }
