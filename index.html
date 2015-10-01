@@ -89,7 +89,7 @@
 					<p>Modélisation de la charge : Soyez prédictif</p>
 					<p>Si vous n'avez pas de production, proposez un modèle en fonction des informations que vous avez.</p>
 					<img height="238" data-src="./images/mdlcharge/trafficInternet.png" alt="Modèle de prévision">
-					<aside class="notes">
+					<aside class=   "notes">
 					Par exemple basez vous sur des modèles métiers : quelle est l'utilisation classique d'internet ?
 					<a href="http://www.libstat.com/pages/heure.htm">Libstat</a> 
 					<a href="F:\Users\mbojoly\Documents\MBO\2014.zip\2014\MyDrive\R2014-168 PARKEON - Tests de perfs Plateforme billettique Lille\4 - Documents de travail\ModeleMonteeEnCharge.xlsx">Image</a>
@@ -99,23 +99,30 @@
 					<p>Modélisation de la charge : comment l'utiliser ?</p>
 					Définissez dans vos tests d'injection locaux le nombre d'utilisateurs "simultanés" et le temps de réflexion
 					<pre><code data-trim contenteditable class="scala" >
-						val clientSearchChain = group("client_search_page") {
-							exec(http("client_search_html")
-							.get("""/ebankingAdmin/acibf/root/contract/contractlist/""")
-						}
-						.pause(7,8) //Pause between 7 and 8 seconds
+val clientSearchChain = group("client_search_page") {
+	exec(http("client_search_html")
+	.get("""/ebankingAdmin/acibf/root/contract/contractlist/""")
+}
+).pause(7,8) //Pause between 7 and 8 seconds
 
-						val scn = scenario("AdminSimulation")
-							.repeat(1) { //Beware of the
-							exitBlockOnFail {
-								exec(loginChain)
-								.exec(clientSearchChain)
-						}
+val scn = scenario("AdminSimulation")
+	.repeat(1) { //Beware of the coordinated omission
+		exitBlockOnFail {
+			exec(loginChain)
+			.exec(clientSearchChain)
+		}
+	}
 
-						setUp(scn.inject(rampUsers(120).over(60),nothingFor(100),rampUsers(250).over(60)).protocols(httpProtocol)
-					</code></pre>
+setUp(scn.inject(
+    rampUsers(120).over(60), //Needs to be adapted to your scenario
+).protocols(httpProtocol)
+</code></pre>
 					<aside class="notes">
-
+                        Coordinated Omission, c'est quant ton injecteur réduit sa charge proportionnellement à
+                        la lenteur de ton applicatif en charge. Ça arrive avec LoadRunner parce qu'il compte en
+                        utilisateurs simultanés et pas en nouveaux utilisateurs par unité de temps ou actions par unité de temps.
+                        <a href="F:\users\mbojoly\Google Drive\SHARED ASSETS\SHARED ASSETS - PERF\06. PERF - Advanced users\Formations\Pepperdine_20140707\performance.zip\performance\slides\04_benchmarking.pdf">
+                            Slide 86 Formation Kirk</a>
 					</aside>
 				</section>
 				<section>
