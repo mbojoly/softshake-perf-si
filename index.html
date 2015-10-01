@@ -74,12 +74,52 @@
 						La mesure d'un temps de réponse sera toujours statistique. En effet l'arrivée des utilsiateurs sera toujours aléatoire.
 						Tous les tests de charge vont donc reposer sur la mesure statistique du temps de réponse suite à une injection. 
 						Le modélisation des utilisateurs est basée sur une statistique d'arrivée et une statistique d'un temps de réflexion (expliquer)
+						<a href="F:\users\mbojoly\Google Drive\Pole Performance\Chantiers\OctoAcademy\Performance et scalabilite.pptx">Image</a>
 					</aside>
 				</section>
 				<section>
 					<p>Modélisation de la charge : Soyez prédictif</p>
 					<p>Si vous n'avez pas de production, proposez un modèle en fonction des informations que vous avez.</p>
 					<img height="238" data-src="./images/mdlcharge/adopters.png" alt="Modèle de prévision">
+					<aside class="notes">
+					Par exemple basez vous sur des modèles métiers : combien de nouveaux utilisateurs ?
+					</aside>
+				</section>
+				<section>
+					<p>Modélisation de la charge : Soyez prédictif</p>
+					<p>Si vous n'avez pas de production, proposez un modèle en fonction des informations que vous avez.</p>
+					<img height="238" data-src="./images/mdlcharge/trafficInternet.png" alt="Modèle de prévision">
+					<aside class="notes">
+					Par exemple basez vous sur des modèles métiers : quelle est l'utilisation classique d'internet ?
+					<a href="http://www.libstat.com/pages/heure.htm">Libstat</a> 
+					<a href="F:\Users\mbojoly\Documents\MBO\2014.zip\2014\MyDrive\R2014-168 PARKEON - Tests de perfs Plateforme billettique Lille\4 - Documents de travail\ModeleMonteeEnCharge.xlsx">Image</a>
+					</aside>
+				</section>
+				<section>
+					<p>Modélisation de la charge : comment l'utiliser ?</p>
+					Définissez dans vos tests d'injection locaux le nombre d'utilisateurs "simultanés" et le temps de réflexion
+					<pre><code data-trim contenteditable class="scala" >
+						val clientSearchChain = group("client_search_page") {
+							exec(http("client_search_html")
+							.get("""/ebankingAdmin/acibf/root/contract/contractlist/""")
+						}
+						.pause(7,8) //Pause between 7 and 8 seconds
+
+						val scn = scenario("AdminSimulation")
+							.repeat(1) { //Beware of the
+							exitBlockOnFail {
+								exec(loginChain)
+								.exec(clientSearchChain)
+						}
+
+						setUp(scn.inject(rampUsers(120).over(60),nothingFor(100),rampUsers(250).over(60)).protocols(httpProtocol)
+					</code></pre>
+					<aside class="notes">
+
+					</aside>
+				</section>
+				<section>
+					<p>Modélsation au sein d'un SI</p>
 				</section>
 				<section>
                     <h1>Annexes mise en page</h1>
