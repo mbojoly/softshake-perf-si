@@ -57,7 +57,163 @@
                     </p>
                 </section>
                 <section>
-                    Contexte : consolidation d'un SI de titrisation bancaire du Luxembourg vers la Suisse
+                    <h3>Un retour d'expérience</h3>
+					La consolidation d'un SI de titrisation bancaire du Luxembourg vers la Suisse
+					<aside class="notes">
+						Photos libres de droit https://mail.google.com/mail/u/0/#search/photo+zen/127f0dc4e3520149
+					</aside>
+                </section>
+				<section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
+					Autant attendre la mise en production...
+					<aside class="notes">
+						Lorsqu'on parle de tests de performance sur un SI il y a beaucoup d'idées reçues qui font qu'on
+						attent la mise en production pour constater les problèmes
+						Source : http://www.morguefile.com/archive/display/940045
+					</aside>
+				</section>
+				<section>
+					<h3>Idées reçues</h3>
+					<p class="fragment">Ca va passer, on a bien travailler, cela va passer.<span class="fragment"></span></p>
+					<p class="fragment">C'est impossible à tester sauf en prod</p>
+					<p class="fragment">La charge ne sera pas représentative</p>
+					<p class="fragment">On n'y arrivera jamais</p>
+					<aside class="notes">
+						Je rapproche ces idées reçues des 6 types de méconaissances en analyse transactionnelle
+						- Nier l'existence du problème
+						- Nier l'existence de solutions
+						- Nier la fiabilité des solutions
+						- Mettre en doute ces capacités à y arriver
+						C:\Users\mbojoly\AppData\Local\Temp\_dc193685389\MyDropbox.zip\MyDropbox\CharismeDurable\Livret CD v1.pdf
+					</aside>
+				</section>
+				<section>
+					<h3>Ma promesse à la fin de ces quelques slides</h3>
+					<p class="fragment">Vous convaincre qu'une approche est possible</p>
+					<p class=fragment">Et vous aider à combattre les idées reçues !</p>
+				</section>
+				<section>
+					<h3>Idée reçue#1 : Le dimensionnement</h3>
+					Idées reçues :
+					<p class="fragment">La préproduction n'est pas représentative</p>
+					<p class="fragment">Il faudrait simuler l'ensemble des actvités de la banque</p>
+				</section>
+				<section>
+					<h3>Notre constat</h3>
+					La pluspart des problèmes sont des problèmes de conception
+					<p class="fragment">80% des problèmes peuvent déjà être identifiés sans dimensionnement correct</p>
+					<p class="fragment">100% des problèmes avec une petite machine seront présents sur une machine plus grosse</p>
+				</section>
+				<section>
+					<h3>Idée reçue#2 : L'automatisation</h3>
+					Vous ne pourrez pas l'automatiser on l'a essayé avec QTP et personne n'y est arrivé
+				</section>
+				<section>
+					<h3>Notre constat</h3>
+					<p class="fragment">Certains clients lourds sont très difficiles à tester</p>
+					<p class="fragment">Mais il existe des alternatives (e.g. Sikuli)</p>
+					<p class="fragment">Adapter vos tests de performance en fonction des enjeux et de la complexité</p>
+					<aside class="notes">
+						De bons outils open source existent pour les clients légers.
+						Des outils éditeurs existent pour les clients lourds (HP Load Runner, Neoload) mais je reconnais
+						qu'il faut le concours de l'éditeur ou à minima les sources. Et ce n'est pas toujours possible.
+						Mais il existe des alternatives comme Sikuli qui fonctionnent dans ce cas.
+						Elles sont plus coûteuses à mettre en oeuvre mais c'est une alternative
+					</aside>
+				</section>
+				<section>
+					<h3>Idée reçue#3 : Les problèmes sont sur le mainframe</h3>
+				</section>
+				<section data-background="images/context/OBSMSR.jpg" style="background: rgba(255,255,255,0.9)">
+					Pas forcément...
+					<h3>Ayez systématiquemnent l'obsession de la mesure</h3>
+					<aside class="notes">Dans notre cas la lenteur principale était sur l'application Java</aside>
+				</section>
+				<section>
+					<h3>Fait#1 : il y a le monde idéal et le monde réel</h3>
+                    <blockquote>
+                        &ldquo;Fais de ta vie un rêve, et d'un rêve une réalité.&rdquo; Antoine de Saint-Exupéry - Cahiers de Saint-Exupéry (1900-1944)
+                    </blockquote>
+                    <aside class="notes">
+                        Je ne vais pas vous vendre du rêve, mais pour faire d'un rêve une réalité il faut quand même rêver
+                        un peu. Alors dans l'idéal qu'est-ce que je voudrais
+                    </aside>
+				</section>
+                <section>
+                    <h3>Rêve 1 : Avoir une parfaite connaissance de la performance</h3>
+                    <img src="images/fact1/purepath1.png" height="50em"/>
+                    <img src="images/fact1/purepath2.png" height="50em" />
+                    <img src="images/fact1/globalview.png" height="300em" />
+                    <aside class="notes">
+                        Des outils commes les APM pour avoir une vue parfaite de l'application : comment circulent les
+                        messages, où est passé le temps
+                        Source Dynatrace
+                    </aside>
+                </section>
+                <section>
+                    <h3>APM : les limites</h3>
+                    <p class="fragment">Les middleware un peu anciens ou avec trop de spécificités</p>
+                    <p class="fragment">Les applications natives (si vous n'avez pas les sources)</p>
+                    <aside class="notes">
+                        Les APM : pour Application Performance Management vont peu ou prou donner une vision globale
+                        en injectant un identifiant dans chaque requête qui est ensuite diffusé à travers tout
+                        mécanisme que l'outil connaît.
+                        Pour donner la vision dans l'application ils vont réaliser de l'injection de bytecode.
+
+                        D'où la limitation en terme d'application native : pas de possibilité d'injecter un
+                        comportement au runtime
+
+                        Aujourd'hui Dynatrace support CICS mais pas du Forms par exemple
+                        Pour le code natif ils commencent à pouvoir avoir une vue système mais cela reste une bêta
+                    </aside>
+                </section>
+                <section>
+                    Une parfaite connaissance de la performance : qui le fait au niveau d'un SI?
+                    <img src="images/fact1/netflix.png" height="500em" />
+                    <aside class="notes">
+                        Source : http://www.brendangregg.com/blog/2015-06-23/netflix-instance-analysis-requirements.html
+                        Netflx a développé un certain nombre d'outils bas niveau qui vont produire de la donnée sur la
+                        performance, mais également sur la stabilité de la plateforme et les applications
+                        Et ils aggrègent tout cela.
+
+                        Donc oui, cela existe, j'aime bien la construction de Netflix qui permet de commencer petit
+                        ==> Faire la référence aux outils Grep/sed mis en place par Cyril
+                    </aside>
+                </section>
+                <section>
+                    <h3>Rêve 2 : Faire des tests de charge à pleine volumétrie</h3>
+                    <p class="fragment">La performance est par nature non linéaire</p>
+                    <p class="fragment">Sans mesure tout n'est que conjecture</p>
+                    <p class="fragment">Oui mais en pratique...</p>
+                </section>
+                <section>
+                    <h3>Résolvez le problèmes progressivement</h3>
+                    <img src="images/fact1/PbFaibleCharge.png" />
+                    <aside class="notes">
+                        Je garde toujours en tête que les tests de charge sont des tests en laboratoire. Il faut
+                        s'approcher de la représentativité parfaite pour réduire le risque de ne pas avoir vu un
+                        problème de scalabilité. C'est donc important pour s'engager sur la tenue en charge.
+                        Mais on néglige souvent les problèmes de performance qu'on peut détecter aux faibles charges.
+                        Ceux-ci ne sont pas forcément les plus simples à corriger
+                    </aside>
+                </section>
+                <section>
+                    <h3>Rêve 3 : On a ce qu'il faut pour faire les tests</h3>
+                    <p class="fragment">Des données migrées</p>
+                    <p class="fragment">Des personnes disponibles</p>
+                    <p class="fragment">Et colocalisées...</p>
+                </section>
+                <section>
+                    <h3>Les intangibles</h3>
+                    <p>Un environnement opérationnel sur un jeu de données minimal</p>
+                    <p>Isoler la zone de mesure</p>
+                    <p>Pour le reste...</p>
+                    <aside class="notes">
+                        Certains éléments sont non négociables
+                        Pour le reste il vous faudra être inventif (image de Mac Gyver)
+                    </aside>
+                </section>
+                <section>
+                    <h1>Fait#3</h1>
                 </section>
                 <section>
                     <h2>Modélisation de la charge</h2>
@@ -73,7 +229,8 @@
 					<aside class="notes">
 						La mesure d'un temps de réponse sera toujours statistique. En effet l'arrivée des utilsiateurs sera toujours aléatoire.
 						Tous les tests de charge vont donc reposer sur la mesure statistique du temps de réponse suite à une injection. 
-						Le modélisation des utilisateurs est basée sur une statistique d'arrivée et une statistique d'un temps de réflexion (expliquer)
+						Le modélisation des uti
+                        lisateurs est basée sur une statistique d'arrivée et une statistique d'un temps de réflexion (expliquer)
 						<a href="F:\users\mbojoly\Google Drive\Pole Performance\Chantiers\OctoAcademy\Performance et scalabilite.pptx">Image</a>
 					</aside>
 				</section>
