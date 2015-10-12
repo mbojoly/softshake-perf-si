@@ -73,10 +73,10 @@
 				</section>
 				<section>
 					<h3>Idées reçues</h3>
-					<p class="fragment">Ca va passer, on a bien travailler, cela va passer.<span class="fragment"></span></p>
-					<p class="fragment">C'est impossible à tester sauf en prod</p>
-					<p class="fragment">La charge ne sera pas représentative</p>
-					<p class="fragment">On n'y arrivera jamais</p>
+					<p class="fragment">Ca va passer, on a bien travailler, cela va passer = nier l'exitence du problème</p>
+					<p class="fragment">C'est impossible à tester sauf en prod = nier l'exstence de solutions</p>
+					<p class="fragment">La charge ne sera pas représentative = nier la fiabilité de ces solutions</p>
+					<p class="fragment">On n'y arrivera jamais = mettre en doute la capacité à y arriver</p>
 					<aside class="notes">
 						Je rapproche ces idées reçues des 6 types de méconaissances en analyse transactionnelle
 						- Nier l'existence du problème
@@ -216,14 +216,53 @@
                         Pour le reste il vous faudra être inventif (image de Mac Gyver)
                     </aside>
                 </section>
+                <section data-background="images/fact3/DontForgetBasics.jpg" style="background: rgba(255,255,255,0.9)">
+                    <h3>Ne pas oublier les basics</h3>
+					<aside class="notes">
+                        On vous a expliquer un certain nombre de façon de faire pour les tests de performance d'un SI
+                        Est-ce que cela veut dire que les techniques de tests de charge traditionnelles sont inutiles?
+						http://www.morguefile.com/archive/display/907874
+					</aside>
+                </section>
+				<section>
+					<p>Les tests de charges application par application restent utiles</p>
+					<p>Les bonnes pratiques qui leur sont associées également</p>
+					<aside class="notes">
+						Deux bonnes pratiques sont particulièrement importantes pour des tests de performance d'un SI
+					</aside>
+				</section>
                 <section>
-                    <h1>Fait#3</h1>
+                    <h3>Délimiter le périmètre testé</h3>
+                    <p class="fragment">Car un test de charge reste un test automatisé</p>
+                    <p class="fragment">Car un test en erreur c'est un test qui ne sert à rien</p>
+                    <aside class="notes">Si vous ne délimitez pas correctement le périmètre testé vous allez au devant de
+                    problèmes insurmontables.
+                    </aside>
+                </section>
+                <section>
+                    <h3>Comment le délimiter ?</h3>
+                    <p class="fragment">Choisissez soigneusement votre jeux de données</p>
+                    <p class="fragment">Ou développez des bouchons</p>
+                    <aside class="notes">
+                        Définissez soigneusement votre jeu de données de façon à ce que l'ensemble des systèmes sollicités
+                        répondent correctement. Etudiez la charge que cela va induire dans tous les systèmes avals :
+                        requête sur une seule et même resssource ? requêtes sur un jeu de données élargi ? sur un jeu
+                        de données représentatif ?
+                    </aside>
+                </section>
+                <section>
+                    <h1>Mettre un exemple concret ?</h1>
                 </section>
                 <section>
                     <h2>Modélisation de la charge</h2>
 					<p>Comment modéliser le comportement de mes utilisateurs ?</p>
 					<p>Combien d'utilisateurs simultanés ?</p>
 					<p>Qu'est-ce qu'un utilisateur simultané ?</p>
+                    <aside class="notes">
+                        Pour une application existante connaître le nombre d'utilisateurs est assez simple.
+                        Mais pour un SI entier ? Pour une application qui ne reçoit des demandes que d'autres
+                        applications ?
+                    </aside>
                 </section>
 				<section>
 					Modélisation de la charge : Comment modéliser le comportement de mes utilisateurs ?
@@ -286,9 +325,47 @@ setUp(scn.inject(
                             Slide 86 Formation Kirk</a>
 					</aside>
 				</section>
+                <section>
+                    <h3>Ne négligez pas les tests de charge unitaire</h3>
+                    <p class="fragment">La vérité est toujours dans la mesure</p>
+                    <p><span class="fragment">Comment avaler un éléphant ?</span>&nbsp;<span class="fragment">Bouchée par bouchée</span></p>
+                    <p class="fragment"></p>
+                    <aside class="notes">
+                        Ne négligez pas les tests de charge unitaire. Choisissez les le plus précisément possible pour
+                        qu'ils soient simples, reproductibles, compréhensibles.
+                        C'est le seul moyen de réutiliser ces résultats dans des conclusions plus larges
+                    </aside>
+                </section>
 				<section>
-					<p>Modélsation au sein d'un SI</p>
+					<h1>Fact #4</h1>
+                    Probablement commencer par l'exemple de la latence avec MQSeries
 				</section>
+                <section>
+                    <h3>Les problèmes faibles prennent de l'ampleur au niveau d'un SI</h3>
+                    <aside class="notes">
+                        Certaines problématiques qui restent gérables au niveau d'une application sont
+                        catastrophiques au niveau d'un SI
+                    </aside>
+                </section>
+                <section>
+                    <h3>POC</h3>
+                    <img src="images/fact4/PocSchema.png" />
+                    <aside class="notes">
+                        L'objectif de ce POC est de modéliser un SI pour voir l'impact de ces problèmes
+                        Pour cela nous avons utilisé docker pour représenter les applications au sein d'une seule VM
+                    </aside>
+                </section>
+                <section>
+                    <h3>DEMO : tout fontionne</h3>
+                </section>
+                <section>
+                    <h3>Les problèmes faibles prennent de la lenteur au niveau d'un SI</h3>
+                    <ul>
+                        <li class="fragment">Latence</li>
+                        <li class="fragment">N1 requêtes</li>
+                        <li class="fragment">N+1 requêtes imbriquées</li>
+                    </ul>
+                </section>
 				<section>
                     <h1>Annexes mise en page</h1>
                 </section>
