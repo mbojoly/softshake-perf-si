@@ -50,6 +50,11 @@
 					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
 					<img src="images/context/application_architecture.png" />
 				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
+					<img src="images/context/application_architecture_technos.png" />
+				</section>
 				<section>
 					<h3>Quelques chiffres</h3>
 					<p class="fragment">Clients : <strong>x10</strong></p>
@@ -59,6 +64,7 @@
 					<p class="fragment">Ordres de Bourse : <strong>x2</strong></p>
 					<p class="fragment">et les effets indirects : opérations sur titres etc.</p>
 				</section>
+				
 				<!-- FACT2 -->	
 				<section data-background="images/fact2/priorities_sign.jpg" style="background: rgba(255,255,255,0.9)">
 					Savoir fixer ses priorités
@@ -66,27 +72,143 @@
 				<section>
 					<h3>Il faut "cadrer" le chantier</h3>
 					<p class="fragment">Avoir une vue précise des volumes existants et cibles</p>
-					<p class="fragment">Avoir une vue des problèmes existants</p>
-					<p class="fragment">Lister les problèmes potentiels</p>
+					<p class="fragment">Lister problèmes existants</p>
+					<p class="fragment">Brainstormer sur les problèmes potentiels</p>
 				</section>
 				<section>
 					<div style="width: 50%; height: 100%; float: left">
 						<img src="images/fact2/vertiginous3.jpg" />
 					</div>
 						<h3>Les problèmes peuvent sembler vertigineux</h3>
-						<p class="fragment">Ne pas se perdre dans les détails, ou aborder les solutions</p>
-						<p class="fragment">Préférer l'exhaustivité à la précision</p>
-						<p class="fragment">Timeboxer !</p>
+						<p class="fragment">Volume d'ordres, nombre de clients, nombre d'utilisateurs concurrents, 
+						capacité à comptabiliser avant la clôture comptable, durée de la nuit batch,
+						impact sur les temps de réponse, latence réseau etc.</p>
+ 		       	</section>
+				<!-- TODO: replace paragraph instead of changing slide -->
+				<section>
+					<div style="width: 50%; height: 100%; float: left">
+						<img src="images/fact2/vertiginous3.jpg" />
+					</div>
+					<h3>Les problèmes peuvent sembler vertigineux</h3>
+					<p>Ne pas se perdre dans les détails, ne pas aborder les solutions</p>
+					<p class="fragment">Préférer l'exhaustivité à la précision</p>
+					<p class="fragment">Timeboxer !</p>
  		       	</section>
  		       	<section>
-					<h3>Vue sur le projet</h3>
+					<div style="width: 50%; height: 100%; float: left">
+						<img src="images/fact2/application_architecture_risks.png" />
+					</div>
+						<ol>
+							<li><strong>Capacité</strong> du HUB actuel de doubler le nombre de transactions/jour</li>
+							<li>Capacité à gérer des OST avec 15000 clients en position</li>
+							<li><strong>SLA</strong> de 5 secondes sur les actions en end-to-end</li>
+							<li>Lenteurs <strong>actuelles</strong> sur les ordres sur fonds</li>
+							<li>Ouverture de l'application à 1000 utilisateurs front-office</li>
+							<li>Doublement du <strong>nombre d'utilisateurs</strong> front-office</li>
+							<li>Impact de l'augmentation du nombre de titres sur la <strong>durée des batchs</strong></li>
+							<li><strong>Latence et temps de réponse</strong> pour les utilisateurs distants</li>							
+						</ol>
 				</section>
 				<section>
 					<h3>Comment y parvenir ?</h3>
 					<p class="fragment">Entretiens utilisateurs</p>
 					<p class="fragment">Entretiens IT</p>
-					<p class="fragment">Problèmes existants vs potentiels</p>
+					<p class="fragment">Problèmes existants vs problèmes potentiels</p>
 				</section>
+				<section>
+					<h3>Et ensuite ?</h3>
+					<p class="fragment">Construire un plan</p>
+					<p class="fragment">La réponse à chaque problème pourra (devra) être complètement différente !</p>
+				</section>
+				<section>
+					<h3>Construire un plan</h3>
+					<p class="fragment">La carte vous aide à visualiser et à prioriser, elle ne "résout" pas les problèmes</p>
+					<p class="fragment">Chaque problème reste complexe et lié au reste du SI</p>
+				</section>
+				<section>
+					<h3>Diviser pour mieux régner</h3>
+					<ul>2 patterns:
+						<li class="fragment">Diviser/découpler : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
+						<li class="fragment">Simplifier : réduire la dimensionnalité</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img src="images/fact2/divide-and-conquer.png" />	
+				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img src="images/fact2/divide-and-conquer-2.png" />										
+					<p class="fragment">D'autres découplages sont possibles : test unitaire isolé, test unitaire mais isolé etc.</p>														
+				</section>
+				<section>
+					<h3>Simplifier : des exemples</h3>
+					<p class="fragment">Ne pas mesurer tous les cas de figure (e.g. types d'opérations ou d'actifs)</p>
+					<p class="fragment">Uniquement simuler les actions principales de l'utilisateur lors d'un test de charge</p>
+					<p class="fragment">Faire le test de charge avec des données existantes</p>
+					<p class="fragment">Utiliser un jeu de données restreint pour les tests</p>
+					<p class="fragment">! Attention, certaines simplifications seront fausses. Il faut penser à <strong>documenter les hypothèses</strong> faîtes !</p>					
+				</section>
+				<section>
+					<h3>Et maintenant ?</h3>
+					<p>Le problème est isolé et simplifié, comment je le résous ?</p>
+					<p class="fragment">Analyse de l'existant</p>
+					<p class="fragment">Modélisation et extrapolation</p>
+					<p class="fragment">Test de l'existant</p>
+					<p class="fragment">Test de la cible</p>
+					<p class="fragment"><strike>Test end-to-end intégré de la cible</strike></p>
+					<p class="fragment">! Certains problèmes devront passer par plusieurs étapes, afin de limiter le risque !</p>					
+				</section>
+				<section>
+					<h3>Analyse de l'existant : un exemple</h3>
+					<p>Temps de réponse end-to-end</p>
+				</section>
+				<section>
+					<h3>Modélisation et extrapolation : un exemple</h3>
+					<p>Capacité du système en terme de transactions</p>
+				</section>				
+				<section>
+					<h3>Où pouvez-vous vous "planter" ?</h3>
+					<p>Rappel: vous ne pourrez pas garantir à 100% la performance</p>
+					<div class="fragment"> 
+						<p>Vous pouvez vous planter car :</p>
+						<ul>
+							<li>un risque est passé à travers le brainstorming</li>
+							<li>une simplification (couplage, dimensionnalité) était trop "simpliste"</li>
+						</ul>
+					</div>
+					<div class="fragment"> 
+						<p>D'expérience mes mauvaises décisions étaient dues à :</p>					
+						<ul>
+							<li>une mauvaise connaissance de la performance existante</li>
+							<li>une mauvaise connaissance des usages existants</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- FACT4 -->	
+				<section data-background="images/fact4/tests-end-to-end.jpg" style="background: rgba(255,255,255,0.9)">
+					Comment (quand même) tester en end-to-end ?
+				</section>
+				<section>
+					<h3>Disclaimer</h3>
+					<p>Les tests end-to-end sont complexes, ceci ne se veut pas une méthode systémique mais un inventaire
+					d'outils à disposition, avec un REX sur leur efficacité</p>
+				</section>				
+				<section>
+					<h3>Outil #1 : Analyse de la production existante</h3>
+				</section>				
+				<section>
+					<h3>Outil #2 : Benchmark unitaire</h3>
+				</section>				
+				<section>
+					<h3>Outil #3 : reproduction d'une journée de production</h3>
+				</section>				
+				<section>
+					<h3>Outil #4 : le Dirac</h3>
+				</section>				
+
 			</div>
 
 		</div>
