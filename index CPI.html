@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Softshake : Performance du SI</title>
+
+		<meta name="description" content="Performance du SI">
+		<meta name="author" content="Cyril Picat">
+		<meta name="author" content="Marc Bojoly">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/octo.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- CONTEXTE -->	
+				<section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
+					Autant attendre la mise en production...
+				</section>
+				<section>
+					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
+					<img src="images/context/application_architecture.png" />
+				</section>
+				<section>
+					<h3>Quelques chiffres</h3>
+					<p class="fragment">Clients : <strong>x10</strong></p>
+					<p class="fragment">Portefeuilles titres : <strong>x5</strong></p>
+					<p class="fragment">Positions : <strong>x3</strong></p>
+					<p class="fragment">Titres : <strong>+50%</strong></p>
+					<p class="fragment">Ordres de Bourse : <strong>x2</strong></p>
+					<p class="fragment">et les effets indirects : opérations sur titres etc.</p>
+				</section>
+				<!-- FACT2 -->	
+				<section data-background="images/fact2/priorities_sign.jpg" style="background: rgba(255,255,255,0.9)">
+					Savoir fixer ses priorités
+				</section>
+				<section>
+					<h3>Il faut "cadrer" le chantier</h3>
+					<p class="fragment">Avoir une vue précise des volumes existants et cibles</p>
+					<p class="fragment">Avoir une vue des problèmes existants</p>
+					<p class="fragment">Lister les problèmes potentiels</p>
+				</section>
+				<section>
+					<div style="width: 50%; height: 100%; float: left">
+						<img src="images/fact2/vertiginous3.jpg" />
+					</div>
+						<h3>Les problèmes peuvent sembler vertigineux</h3>
+						<p class="fragment">Ne pas se perdre dans les détails, ou aborder les solutions</p>
+						<p class="fragment">Préférer l'exhaustivité à la précision</p>
+						<p class="fragment">Timeboxer !</p>
+ 		       	</section>
+ 		       	<section>
+					<h3>Vue sur le projet</h3>
+				</section>
+				<section>
+					<h3>Comment y parvenir ?</h3>
+					<p class="fragment">Entretiens utilisateurs</p>
+					<p class="fragment">Entretiens IT</p>
+					<p class="fragment">Problèmes existants vs potentiels</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
