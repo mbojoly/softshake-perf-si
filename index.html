@@ -356,8 +356,78 @@ setUp(scn.inject(
                     </aside>
                 </section>
                 <section>
-                    <h3>DEMO : tout fontionne</h3>
+					<section>
+						<h3>DEMO : une application</h3>
+						<p>5 appels en base de données, 1 traitement</p>
+					</section>
+					<section>
+					<pre><code data-trim contenteditable class="shell" >
+curl -X POST \
+-H "Accept: applicaiton/json" \
+-H "Content-Type: application/json" \
+-d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10 }' \
+http://192.168.99.100:8080/compute
+					</code></pre>
+					</section>
                 </section>
+					<section>
+						<h3>DEMO : on passe à l'échelle avec un petit SI</h3>
+                        <p>5 applications qui s'appellent successivement de façon synchrone</p>
+						<p>5 appels en base de données, 1 traitement</p>
+					</section>
+                    <section><pre><code data-trim contenteditable class="shell" >
+curl -X POST \
+-H "Accept: applicaiton/json" \
+-H "Content-Type: application/json" \
+-d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10, \
+"serviceCalls":[ \
+{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
+{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
+{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
+{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }
+] \
+}' \
+http://192.168.99.100:8080/compute
+						</code></pre>
+                    </section>
+                </section>
+				<section>
+					<section>
+						<h3>DEMO : on passe dans un SI réel</h3>
+					</section>
+					<section><pre><code data-trim contenteditable class="shell" >
+$ sudo docker-machine ssh default
+$$ sudo tc qdisc add dev docker0 root netem delay 10ms
+$$ sudo tc qdisc show dev docker0
+					</code></pre></section>
+					<section>
+						Sans latence
+						<pre><code data-trim contenteditable class="shell" >
+Call the database 5 times during 10 ms. each for a total of 57 ms.
+CPU intensive compute 45ms.
+Call HTTP Ressources : For a total of 0.0 ms.
+						</code></pre>
+						Avec 10 ms. de latence
+						<pre><code data-trim contenteditable class="shell" >
+Call the database 5 times during 10 ms. each for a total of 807 ms.
+CPU intensive compute 48ms.
+Call HTTP Ressources : For a total of 0.0 ms.
+						</code></pre>
+					</section>
+					<section>
+						<h3>Et concrêtement</h3>
+						<img src="images/fact4/DockerTcp80.png" />
+					</section>
+					<section>
+						<h3>Et concrêtement</h3>
+						<img src="images/fact4/DockerTcp9093.png" />
+					</section>
+					<section><img src="images/fact4/Peage.jpg"></section>
+					<section>
+						<h3>De la simulation d'une DMZ</h3>
+						<img src="images/fact4/DMZ.png" />
+					</section>
+				</section>
                 <section>
                     <h3>Les problèmes faibles prennent de la lenteur au niveau d'un SI</h3>
                     <ul>
