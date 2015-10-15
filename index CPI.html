@@ -196,21 +196,62 @@
 					Comment (quand même) tester en end-to-end ?
 				</section>
 				<section>
-					<h3>Disclaimer</h3>
-					<p>Les tests end-to-end sont complexes, ceci ne se veut pas une méthode systémique mais un inventaire
-					d'outils à disposition, avec un REX sur leur efficacité</p>
+					<p>Les tests end-to-end sont obligatoires car certains résultats (cf. PoC) peuvent défier l'intuition</p>
+					<div class="fragment">
+						<h3 >Disclaimer</h3>
+						<p>Les tests end-to-end sont complexes, ceci ne se veut pas une méthode systémique mais un inventaire
+						d'outils à disposition, ainsi qu'un REX sur leur efficacité</p>
+					</div>
 				</section>				
 				<section>
 					<h3>Outil #1 : Analyse de la production existante</h3>
+					<p class="fragment">Analyse des latences entre systèmes</p>
+					<p class="fragment">Identification du goulet d'étranglement</p>
+					<p class="fragment">Découverte des problèmes de design</p>
+					<p class="fragment">Évaluation de la capacité du système</p>
+				</section>				
+				<section>
+					<h3>Outil #1 : Analyse de la production existante</h3>
+					<p>Exemple de l'évaluation de la capacité du système</p>
+					<img src="images/fact4/order-throughput.png" />
+				</section>				
+				<section>
+					<h3>Outil #1 : mon REX</h3>
+					<p class="fragment">Souvent faîte trop tard...</p>
+					<p class="fragment">Dur à vendre, pourtant ROI elevé</p>
+					<p class="fragment">Commencez petit...</p>
+					<p class="fragment">Attention à la répartition de la charge !</p>
+				</section>				
+				<section>
+					<h3>Outil #1 : attention aux chiffres !</h3>
+					<!-- TODO add image comparison -->
+				</section>				
+				<section>
+					<h3>Outil #1 : attention aux chiffres !</h3>
+					<!-- TODO add image comparison -->
 				</section>				
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
+					<p>2 sous-classes dans cette catégorie :</p>					
+					<ol>
+						<li>réponse à une transaction unitaire</li>
+						<li>réponse à une transaction unitaire sur un large volume données</li>
+					</ul>
 				</section>				
 				<section>
-					<h3>Outil #3 : reproduction d'une journée de production</h3>
+					<h3>Outil #2 : Benchmark unitaire</h3>
+					<p>Exemple d'analyse</p>					
+					<img height="200px" src="images/fact4/response-time.png" />
+					<div class="fragment">
+						<p>Une représentation en Flame Graph est également adaptée</p>
+						<img height="150px" src="images/fact4/flame-graph.png" />
+					</div>
 				</section>				
 				<section>
-					<h3>Outil #4 : le Dirac</h3>
+					<h3>Outil #3 : le Dirac</h3>
+				</section>				
+				<section>
+					<h3>Outil #4 : "rejeu" d'une journée de production</h3>
 				</section>				
 
 			</div>
