@@ -135,7 +135,10 @@
 				<section>
 					Pas forcément...
 					<h3>Ayez systématiquement l'obsession de la mesure</h3>
-					<aside class="notes">Dans notre cas la lenteur principale était sur l'application Java</aside>
+					<aside class="notes">
+						Le traitement d'un ordre unitaire est plus long dans le mainframe
+                        Mais l'application Java batche les traitement ce qui dégrade la latence
+					</aside>
 				</section>
 				<!-- Partie 1 -->
 				<section data-background="images/fact1/StExupery.jpg" style="background: rgba(255,255,255,0.9)">
@@ -168,7 +171,10 @@
                     Une parfaite connaissance de la performance : qui le fait au niveau d'un SI?
                     <img src="images/fact1/netflix.png" height="500em" />
                     <aside class="notes">
-                        Source : http://www.brendangregg.com/blog/2015-06-23/netflix-instance-analysis-requirements.html
+                        Sources :
+                        http://www.brendangregg.com/blog/2015-06-23/netflix-instance-analysis-requirements.html
+                        http://www.brendangregg.com/blog/2014-06-12/java-flame-graphs.html
+
                         Netflx a développé un certain nombre d'outils bas niveau qui vont produire de la donnée sur la
                         performance, mais également sur la stabilité de la plateforme et les applications
                         Et ils aggrègent tout cela.
@@ -177,12 +183,7 @@
                         ==> Faire la référence aux outils Grep/sed mis en place par Cyril
                     <p>Les middleware un peu anciens ou avec trop de spécificités</p>
                     <p>Les applications natives (si vous n'avez pas les sources)</p>
-                        Les APM : pour Application Performance Management vont peu ou prou donner une vision globale
-                        en injectant un identifiant dans chaque requête qui est ensuite diffusé à travers tout
-                        mécanisme que l'outil connaît.
-                        Pour donner la vision dans l'application ils vont réaliser de l'injection de bytecode.
-
-                        D'où la limitation en terme d'application native : pas de possibilité d'injecter un
+                                                D'où la limitation en terme d'application native : pas de possibilité d'injecter un
                         comportement au runtime
 
                         Aujourd'hui Dynatrace support CICS mais pas du Forms par exemple
@@ -191,8 +192,11 @@
                 </section>
 
 				<section>
-					<h3>Quel outillage ?</h3>
-					<!-- TODO -->
+					<h3>Connaissance de la performance : par où commencer ?</h3>
+                    <ul>
+                        <li>Analyse de logs (python, matplotlib, python pandas...)</li>
+                        <li>Collecte d'outils systèmes (nmon, vmstat...)</li>
+                    </ul>
 					<p>APM versus outils artisanaux</p>
 				</section>
 				<section>
@@ -379,6 +383,7 @@
                 </section>
                 <section>
                     <h1>Mettre un exemple concret ?</h1>
+                    TODO : GED Cardiff
                 </section>
                 <section>
                     <h2>Modélisation de la charge</h2>
@@ -437,6 +442,7 @@ val scn = scenario("AdminSimulation")
 		exitBlockOnFail {
 			exec(loginChain)
 			.exec(clientSearchChain)
+            //No logout, 90% of users don't
 		}
 	}
 
@@ -467,81 +473,182 @@ setUp(scn.inject(
 					Comment (quand même) tester en end-to-end ?
 				</section>
                 <section>
-                    <h3>Les problèmes faibles prennent de l'ampleur au niveau d'un SI</h3>
-                    <aside class="notes">
-                        Certaines problématiques qui restent gérables au niveau d'une application sont
-                        catastrophiques au niveau d'un SI
-                    </aside>
-                </section>
-                <section>
-                    <h3>POC</h3>
-                    <img src="images/fact4/PocSchema.png" />
-                    <aside class="notes">
-                        L'objectif de ce POC est de modéliser un SI pour voir l'impact de ces problèmes
-                        Pour cela nous avons utilisé docker pour représenter les applications au sein d'une seule VM
-                    </aside>
-                </section>
-                <section>
-					<section>
-						<h3>DEMO : une application</h3>
-						<p>5 appels en base de données, 1 traitement</p>
-					</section>
-					<section>
+                    <section>
+                        <h3>DEMO : une application</h3>
+                        <p>5 appels en base de données, 1 traitement</p>
+                    </section>
+                    <section>
 					<pre><code data-trim contenteditable class="shell" >
-curl -X POST \
--H "Accept: applicaiton/json" \
--H "Content-Type: application/json" \
--d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10 }' \
-http://192.168.99.100:8080/compute
-					</code></pre>
-					</section>
+                        curl -X POST \
+                        -H "Accept: applicaiton/json" \
+                        -H "Content-Type: application/json" \
+                        -d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10 }' \
+                        http://192.168.99.100:8080/compute
+                    </code></pre>
+                    </section>
                 </section>
-                <section>
+               <section>
 					<section>
-						<h3>DEMO : on passe à l'échelle avec un petit SI</h3>
-                        <p>5 applications qui s'appellent successivement de façon synchrone</p>
-						<p>5 appels en base de données, 1 traitement</p>
+						<h3>DEMO Quizz : quel est le temps de réponse d'une application ?</h3>
+                        <p>1 application</p>
+                        <p>60 ms. de traitement</p>
+						<p>6 appels en base de données, 10 ms. chacuns</p>
 					</section>
                     <section><pre><code data-trim contenteditable class="shell" >
-curl -X POST \
--H "Accept: applicaiton/json" \
--H "Content-Type: application/json" \
--d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10, \
-"serviceCalls":[ \
-{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
-{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
-{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }, \
-{"computationDescription":{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":5}, "callsNumber":2 }
-] \
-}' \
-http://192.168.99.100:8080/compute
+                        curl -X POST \
+                        -H "Accept: applicaiton/json" \
+                        -H "Content-Type: application/json" \
+                        -d '{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":10 }' \
+                        http://$HOST:8080/compute
 						</code></pre>
                     </section>
+                   <section><code>
+                       <pre>$ ./sh/poc1.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   234  100   142  100    92    533    345 --:--:-- --:--:-- --:--:--   533Call the database 6 times during 10 ms. each for a total of 198 ms.
+CPU intensive compute 49ms.
+Call HTTP Ressources : For a total of 0.0 ms.
+</pre>
+                   </code></section>
                 </section>
 				<section>
 					<section>
-						<h3>DEMO : on passe dans un SI réel</h3>
+						<h3>DEMO & Quizz : quel est le temps de réponse d'une chaîne applicative dans un SI ?</h3>
+                        <p>6 applications identiques à la précédente (60 ms. de traitement, 6 x 10 ms. de BD)</p>
+                        <p>Appels synchrones séquentiels</p>
 					</section>
+                    <section><pre><code data-trim contenteditable class="shell" >
+                        curl -X POST \
+                        -H "Accept: applicaiton/json" \
+                        -H "Content-Type: application/json" \
+                        -d '{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":12, "serviceCalls":[{"computationDescription":{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":5}, "callsNumber":2 }, {"computationDescription":{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":5}, "callsNumber":2 }, {"computationDescription":{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":5}, "callsNumber":2 }, {"computationDescription":{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":5}, "callsNumber":2 }, {"computationDescription":{"cpuIntensiveComputationsDuration":60, "databaseCallsNumber":6, "databaseCallDuration":5}, "callsNumber":2 }]}' \
+                        http://$HOST:8080/compute
+                    </code></pre></section>
+                </section>
+                <section><code>
+                    <pre>$ ./sh/poc2.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2380  100  1587  100   793   1005    502  0:00:01  0:00:01 --:--:--  1005Call the database 6 times during 12 ms. each for a total of 100 ms.
+CPU intensive compute 56ms.
+Call HTTP Ressources :{
+Call the database 6 times during 5 ms. each for a total of 57 ms.
+CPU intensive compute 44ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 50 ms.
+CPU intensive compute 48ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 156 ms.
+CPU intensive compute 51ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 49 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 122 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 44 ms.
+CPU intensive compute 50ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 47 ms.
+CPU intensive compute 59ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 46 ms.
+CPU intensive compute 49ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 49 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 45 ms.
+CPU intensive compute 51ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+ For a total of 1418.0 ms.
+</pre>
+                </code></section>
+                <section>
+                    <section>
+                        <h3>DEMO & Quizz : quel est le temps de réponse de la même chaîne dans une modélisation plus proche de la réalité ?</h3>
+                        <p>6 applications identiques à la précédente (60 ms. de traitement, 6 x 10 ms. de BD)</p>
+                        <p>Appels synchrones séquentiels</p>
+                    </section>
 					<section><pre><code data-trim contenteditable class="shell" >
 $ sudo docker-machine ssh default
 $$ sudo tc qdisc add dev docker0 root netem delay 10ms
 $$ sudo tc qdisc show dev docker0
 					</code></pre></section>
-					<section>
-						Sans latence
-						<pre><code data-trim contenteditable class="shell" >
-Call the database 5 times during 10 ms. each for a total of 57 ms.
-CPU intensive compute 45ms.
-Call HTTP Ressources : For a total of 0.0 ms.
-						</code></pre>
-						Avec 10 ms. de latence
-						<pre><code data-trim contenteditable class="shell" >
-Call the database 5 times during 10 ms. each for a total of 807 ms.
-CPU intensive compute 48ms.
-Call HTTP Ressources : For a total of 0.0 ms.
-						</code></pre>
-					</section>
+                    <section><code>
+                        <pre>$ ./sh/poc2.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2388  100  1595  100   793    398    198  0:00:04  0:00:04 --:--:--   398Call the database 6 times during 12 ms. each for a total of 333 ms.
+CPU intensive compute 57ms.
+Call HTTP Ressources :{
+Call the database 6 times during 5 ms. each for a total of 295 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 291 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 293 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 303 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 294 ms.
+CPU intensive compute 57ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 291 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 291 ms.
+CPU intensive compute 55ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 293 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 294 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+{
+Call the database 6 times during 5 ms. each for a total of 289 ms.
+CPU intensive compute 58ms.
+Call HTTP Ressources : For a total of 0.0 ms.}
+ For a total of 3575.0 ms.
+</pre>
+                    </code></section>
+                    <section>
+                        <h3>POC & Quizz</h3>
+                        <img src="images/fact4/PocSchema.png" />
+                        <aside class="notes">
+                            L'objectif de ce POC est de modéliser un SI pour voir l'impact de ces problèmes
+                            Pour cela nous avons utilisé docker pour représenter les applications au sein d'une seule VM
+                        </aside>
+                    </section>
 				</section>
+                <section><img src="images/fact4/Peage.jpg"></section>
+                <section>
+                    <h3>Nous avons simulé une DMZ un peu pointilleuse</h3>
+                    <img src="images/fact4/DMZ.png" />
+                </section>
                 <section>
                     <h3>Et concrêtement ? </h3>
                     <img src="images/fact4/DockerTcp80.png" />
@@ -550,13 +657,8 @@ Call HTTP Ressources : For a total of 0.0 ms.
                     <h3>Et concrêtement ?</h3>
                     <img src="images/fact4/DockerTcp9093.png" />
                 </section>
-                <section><img src="images/fact4/Peage.jpg"></section>
                 <section>
-                    <h3>Nous avons simulé une DMZ un peu pointilleuse</h3>
-                    <img src="images/fact4/DMZ.png" />
-                </section>
-                <section>
-                    <h3>En synthèse, les problèmes faibles peuvent devenir critiques au niveau d'un SI</h3>
+                    <h3>En synthèse, de faibles problèmes peuvent devenir critiques au niveau d'un SI</h3>
                     <ul>
                         <li>Latence</li>
                         <li>N+1 requêtes</li>
