@@ -30,6 +30,16 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
+		<!-- override default black borders for images -->
+		<style>
+		
+			.reveal section img {
+				border: none;
+		  		box-shadow: 0 0 0 rgba(0, 0, 0, 0); 
+			}
+
+		</style>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -110,7 +120,7 @@
 				</section>
 				<section>
 					<h3>Notre constat</h3>
-					La pluspart des problèmes sont des problèmes de conception
+					La plupart des problèmes sont des problèmes de conception
 					<p class="fragment">80% des problèmes peuvent déjà être identifiés sans dimensionnement correct</p>
 					<p class="fragment">100% des problèmes avec une petite machine seront présents sur une machine plus grosse</p>
 				</section>
