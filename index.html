@@ -69,7 +69,9 @@
 					<p>Positions : <strong>x3</strong></p>
 					<p>Titres : <strong>+50%</strong></p>
 					<p>Ordres de Bourse : <strong>x2</strong></p>
-					<p>et les effets indirects : opérations sur titres etc.</p>
+					<aside class="notes">
+						<p>et les effets indirects : opérations sur titres etc.</p>
+					</aside>
 				</section>
 				<section>
 					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
@@ -219,9 +221,9 @@
 						<img src="images/fact2/vertiginous3.jpg" />
 					</div>
 					<h3>Les problèmes peuvent sembler vertigineux</h3>
-					<div>
-						<p>Ne pas se perdre dans les détails, ne pas aborder les solutions</p>
+					<div class="fragment">
 						<p>Préférer l'exhaustivité à la précision</p>
+						<p>Ne pas chercher de solutions</p>
 						<p>Timeboxer !</p>
 					</div>
 					<aside class="notes">
@@ -239,14 +241,13 @@
 					<h3>Comment y parvenir ?</h3>
 					<p>Entretiens utilisateurs</p>
 					<p>Entretiens IT</p>
-					<p>Problèmes existants vs problèmes potentiels</p>
 					</aside>
 				</section>
 				<section>
-					<div style="width: 60%; float: left; margin-left:-40px; margin-top:120px; margin-right:20px;">
-						<img src="images/fact2/application_architecture_risks.png" />
+					<div style="width: 70%; float: left; margin-left:-100px; margin-top:50px; margin-right:10px;">
+						<img width="1050px" height="600px" src="images/fact2/application_architecture_risks.png" />
 					</div>
-					<div style="width: 40%; float: right; font-size: 0.80em;" >
+					<div style="width: 35%; float: right; font-size: 0.80em;" >
 						<h3>Les problèmes "usuels"</h3>
 						<ol>
 							<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
@@ -271,17 +272,28 @@
 				</section>
 				<section>
 					<h3>Et ensuite ?</h3>
-					<h3>Construire un plan</h3>
 					<p>La carte vous aide à visualiser et à prioriser, elle ne "résout" pas les problèmes</p>
 					<p>Chaque problème reste complexe et lié au reste du SI</p>
+					<aside class="notes">
+					<h3>Construire un plan</h3>
+					</aside>
 				</section>
 				<section>
 					<h3>Diviser pour mieux régner</h3>
 					<p>2 patterns</p>
 					<ul>
-						<li>Diviser/découpler : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
-						<li>Simplifier : réduire la dimensionnalité (cas de tests, données)</li>
+						<li class="fragment">Diviser/découpler : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
+						<li class="fragment">Simplifier : réduire la dimensionnalité (cas de tests, données etc.)</li>
 					</ul>
+				</section>
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img height="500px" src="images/fact2/divide-and-conquer.png" />
+				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img height="500px" src="images/fact2/divide-and-conquer-2.png" />
 					<aside class="notes">					
 										<h3>Simplifier : des exemples</h3>
 					<p>Ne pas tester tous les cas fonctionnels</p>
@@ -290,15 +302,6 @@
 					<p>Utiliser un jeu de données restreint pour les tests</p>
 					<p>! Attention, certaines simplifications seront fausses. Il faut penser à <strong>documenter les hypothèses</strong> faîtes !</p>
 					</aside>
-				</section>
-				<section>
-					<h3>Diviser/découpler : un exemple</h3>
-					<img src="images/fact2/divide-and-conquer.png" />
-				</section>
-				<!-- TODO: replace image instead of changing slide -->
-				<section>
-					<h3>Diviser/découpler : un exemple</h3>
-					<img src="images/fact2/divide-and-conquer-2.png" />
 				</section>
 				<section>
 					<h3>Et maintenant ?</h3>
@@ -316,7 +319,7 @@
 						<li>Test de la cible</li>
 						<li>Test end-to-end intégré de la cible</li>
 					</ul>
-					<img height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"/>
+					<img class="fragment" height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"/>
 					<aside class="notes">					
 
 					<br/>
@@ -327,7 +330,13 @@
 				</section>
 				<section>
 					<h3>Où pouvez-vous vous "planter" ?</h3>
-					<p>Rappel : vous ne pourrez pas garantir à 100% la performance</p>
+					<div class="fragment">
+						<p>D'expérience, les mauvaises décisions étaient dues à :</p>
+						<ul>
+							<li>une mauvaise connaissance de la performance existante</li>
+							<li>une mauvaise connaissance des usages existants</li>
+						</ul>
+					<aside class="notes">
 					<div>
 						<p>Vous pouvez vous planter car :</p>
 						<ul>
@@ -335,12 +344,7 @@
 							<li>une simplification était trop "simpliste"</li>
 						</ul>
 					</div>
-					<div>
-						<p>D'expérience, les mauvaises décisions étaient dues à :</p>
-						<ul>
-							<li>une mauvaise connaissance de la performance existante</li>
-							<li>une mauvaise connaissance des usages existants</li>
-						</ul>
+					</aside>
 					</div>
 				</section>
 				<!-- Partie 3 -->
@@ -560,7 +564,7 @@ Call HTTP Ressources : For a total of 0.0 ms.
                 </section>
 				<section>
 					<p>Les tests end-to-end sont obligatoires car certains résultats (cf. PoC) peuvent défier l'intuition</p>
-					<div>
+					<div class="fragment">
 						<h3 >Disclaimer</h3>
 						<p>Les tests end-to-end sont complexes. Ceci ne se veut pas une méthode systémique mais un inventaire
 							d'outils à disposition, ainsi qu'un REX sur leur efficacité</p>
@@ -577,19 +581,22 @@ Call HTTP Ressources : For a total of 0.0 ms.
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/order-throughput.png" />
-				</section>
-				<section>
+					<aside class="notes">
 					<h3>Outil #1 : mon REX</h3>
 					<p>Souvent faîte trop tard...</p>
 					<p>Commencez petit...</p>
 					<p>Attention à la répartition de la charge !</p>
+					</aside>
 				</section>
 				<section>
 					<h3>Outil #1 : attention aux chiffres !</h3>
-					<!-- TODO add image comparison -->
-				</section>
-				<section>
-					<h3>Outil #1 : attention aux chiffres !</h3>
+					<p>Jour 1 : 1000 transactions, temps de réponse moyen 15s</p>
+					<p>Jour 2 : 2000 transactions, temps de réponse moyen 40s</p>
+				<aside class="notes">
+					Loi de scalabilité universelle
+					Profil de la journée similaire
+					Détail
+				</aside>					
 					<!-- TODO add image comparison -->
 				</section>
 				<section>
@@ -600,24 +607,19 @@ Call HTTP Ressources : For a total of 0.0 ms.
 					<h3>Outil #2 : Benchmark unitaire</h3>
 					<p>Exemple d'analyse</p>
 					<img height="200px" src="images/fact4/response-time.png" />
-					<div>
+					<div class="fragment">
 						<p>Une représentation en "flame graph" est également adaptée</p>
 						<img height="150px" src="images/fact4/flame-graph.png" />
 					</div>
-				</section>
-				<section>
+				<aside class="notes">
 					<h3>Outil #2 : mon REX</h3>
 					<p>La plupart des problèmes de design apparaissent en unitaire</p>
-					<p>Faîtes-en plusieurs...</p>
-					<p>Attention à ne pas faire de test de charge avant !</p>
+					<p>Unitaire vs unique</p>
 					<p>S'il ne faut en garder qu'un, gardez celui-ci !</p>
-				</section>
-				<aside class="notes">
-					Ex. problème GTX
-					Parallèle avec test d'un seul système
 				</aside>
+				</section>
 				<section>
-					<h3>Outil #3 : le Dirac</h3>
+					<h3>Outil #3 : le pic de transactions</h3>
 					<img height="400px" src="images/fact4/dirac.png" />
 					<aside class="notes">
 						Peak de N transactions
@@ -625,40 +627,43 @@ Call HTTP Ressources : For a total of 0.0 ms.
 					</aside>
 				</section>
 				<section>
-					<h3>Outil #3 : le Dirac</h3>
+					<h3>Outil #3 : le pic de transactions</h3>
 					<p>Exemple d'analyse</p>
 					<img height="400px" src="images/fact4/dirac-example.png" />
-				</section>
-				<section>
+				<aside class="notes">
 					<h3>Outil #3 : mon REX</h3>
 					<p>Le complément parfait du test unitaire</p>
-					<p>Plus simple à analyser qu'une journée de production</p>
+					<p>Plus simple à simuler qu'une charge réaliste</p>
+					<p>Pas toujours pertinent : ex. utilisateurs</p>
 					<p>Teste également la robustesse du système</p>
 					<p>Greffez-vous sur les tests fonctionnels !</p>
+					</aside>
 				</section>
 				<section>
 					<h3>Outil #4 : "rejeu" d'une journée de production</h3>
 					<img height="500px" src="images/fact4/replay-production.png" />
-					<p style="position: absolute; top:450px; left: 200px; height:50px; width:600px; font-size:1.5em; color:blue;">simplifiée bien sûr !</p>
-				</section>
-				<section>
+					<p class="fragment" style="position: absolute; top:450px; left: 200px; height:50px; width:600px; font-size:1.5em; color:blue;">simplifiée bien sûr !</p>
+				<aside class="notes">
 					<h3>Outil #4 : mon REX</h3>
 					<p>Difficile à analyser, notamment les écarts</p>
 					<p>Difficile à interpréter</p>
 					<p>En dernier, en impliquant le support métier</p>
+				</aside>
 				</section>
 				<section>
 					<h3>Outil #5 : mettre en production</h3>
 					<p>Tout ce qui peut être mis en production par avance doit l'être</p>
 					<p>Pensez votre stratégie de migration pour monter en charge progressivement</p>
-					<p>Inspirez vous des Géants du Web (feature flipping, dark launch, canary)</p>
+					<p>Inspirez vous des Géants du Web</p>
+				<aside class="notes">
+					 (feature flipping, dark launch, canary release etc.)
+				</aside>
 				</section>
 				<section>
 					<h3>Que faut-il mesurer ?</h3>
 					<!-- TODO -->
 					<p>Temps entrée / sortie de chaque système</p>
-					<p>NMON (incl. TOP)</p>
-					<p>à complèter si nécessaire...</p>
+					<p class="fragment">à complèter si nécessaire...</p>
 				</section>
 				<!-- Conclusion -->
 				<section>
