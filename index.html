@@ -56,13 +56,6 @@
                         OCTO Technology Lausanne, consultant
                     </p>
                 </section>
-                <section>
-                    <h3>Un retour d'expérience</h3>
-					La consolidation d'un SI de titrisation bancaire du Luxembourg vers la Suisse
-					<aside class="notes">
-						Photos libres de droit https://mail.google.com/mail/u/0/#search/photo+zen/127f0dc4e3520149
-					</aside>
-                </section>
 				<section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
 					Autant attendre la mise en production...
 					<aside class="notes">
@@ -70,6 +63,24 @@
 						attent la mise en production pour constater les problèmes
 						Source : http://www.morguefile.com/archive/display/940045
 					</aside>
+				</section>
+				<section>
+					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
+					<img src="images/context/application_architecture.png" />
+				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
+					<img src="images/context/application_architecture_technos.png" />
+				</section>
+				<section>
+					<h3>Quelques chiffres</h3>
+					<p class="fragment">Clients : <strong>x10</strong></p>
+					<p class="fragment">Portefeuilles titres : <strong>x5</strong></p>
+					<p class="fragment">Positions : <strong>x3</strong></p>
+					<p class="fragment">Titres : <strong>+50%</strong></p>
+					<p class="fragment">Ordres de Bourse : <strong>x2</strong></p>
+					<p class="fragment">et les effets indirects : opérations sur titres etc.</p>
 				</section>
 				<section>
 					<h3>Idées reçues</h3>
@@ -128,8 +139,9 @@
 					<h3>Ayez systématiquemnent l'obsession de la mesure</h3>
 					<aside class="notes">Dans notre cas la lenteur principale était sur l'application Java</aside>
 				</section>
+				<!-- Partie 1 -->
 				<section data-background="images/fact1/StExupery.jpg" style="background: rgba(255,255,255,0.9)">
-					<h3>Il y a le monde idéal et le monde réel</h3>
+					<h3>Dans un monde parfait...</h3>
                     <blockquote>
                         &ldquo;Fais de ta vie un rêve, et d'un rêve une réalité.&rdquo;
 						Antoine de Saint-Exupéry - Cahiers de Saint-Exupéry (1900-1944)
@@ -183,26 +195,16 @@
                         ==> Faire la référence aux outils Grep/sed mis en place par Cyril
                     </aside>
                 </section>
-                <section>
-                    <h3>Rêve 2 : Faire des tests de charge à pleine volumétrie</h3>
-                    <p class="fragment">La performance est par nature non linéaire</p>
-                    <p class="fragment">Sans mesure tout n'est que conjecture</p>
-                    <p class="fragment">Oui mais en pratique...</p>
-                </section>
-                <section>
-                    <h3>Résolvez le problèmes progressivement</h3>
-                    <img src="images/fact1/PbFaibleCharge.png" />
-                    <aside class="notes">
-                        Je garde toujours en tête que les tests de charge sont des tests en laboratoire. Il faut
-                        s'approcher de la représentativité parfaite pour réduire le risque de ne pas avoir vu un
-                        problème de scalabilité. C'est donc important pour s'engager sur la tenue en charge.
-                        Mais on néglige souvent les problèmes de performance qu'on peut détecter aux faibles charges.
-                        Ceux-ci ne sont pas forcément les plus simples à corriger
-                    </aside>
-                </section>
-                <section>
-                    <h3>Rêve 3 : On a ce qu'il faut pour faire les tests</h3>
-                    <p class="fragment">Des données migrées</p>
+
+				<section>
+					<h3>Quel outillage ?</h3>
+					<!-- TODO -->
+					<p class="fragment">APM versus outils artisanaux</p>
+				</section>
+				<section>
+                    <h3>Rêve 2 : On a ce qu'il faut pour faire les tests</h3>
+                    <p class="fragment">Des développements terminés</p>
+					<p class="fragment">Des données migrées</p>
                     <p class="fragment">Des personnes disponibles</p>
                     <p class="fragment">Et colocalisées...</p>
                 </section>
@@ -216,6 +218,144 @@
                         Pour le reste il vous faudra être inventif (image de Mac Gyver)
                     </aside>
                 </section>
+				<!-- Partie 2 -->
+				<section data-background="images/fact2/priorities_sign.jpg" style="background: rgba(255,255,255,0.9)">
+					Savoir fixer ses priorités
+				</section>
+				<section>
+					<h3>Il faut "cadrer" le chantier</h3>
+					<p class="fragment">Avoir une vue précise des volumes existants et cibles</p>
+					<p class="fragment">Lister les problèmes existants</p>
+					<p class="fragment">Brainstormer sur les problèmes potentiels</p>
+				</section>
+				<!-- TODO: replace paragraph instead of changing slide -->
+				<section>
+					<div style="width: 50%; height: 100%; float: left">
+						<img src="images/fact2/vertiginous3.jpg" />
+					</div>
+					<h3>Les problèmes peuvent sembler vertigineux</h3>
+					<p class="fragment">Ne pas se perdre dans les détails, ne pas aborder les solutions</p>
+					<p class="fragment">Préférer l'exhaustivité à la précision</p>
+					<p class="fragment">Timeboxer !</p>
+					<aside class="notes">
+						Volume d'ordres, nombre de clients, nombre d'utilisateurs concurrents,
+						capacité à comptabiliser avant la clôture comptable, durée de la nuit batch,
+						impact sur les temps de réponse, latence réseau etc.
+					</aside>
+				</section>
+				<section>
+					<h3>Comment y parvenir ?</h3>
+					<p class="fragment">Entretiens utilisateurs</p>
+					<p class="fragment">Entretiens IT</p>
+					<p class="fragment">Problèmes existants vs problèmes potentiels</p>
+				</section>
+				<section>
+					<div style="width: 60%; float: left; margin-left:-40px; margin-top:120px; margin-right:20px;">
+						<img src="images/fact2/application_architecture_risks.png" />
+					</div>
+					<div style="width: 40%; float: right; font-size: 0.80em;" >
+						<h3>Les problèmes "usuels"</h3>
+						<ol>
+							<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
+							<li>Augmentation de <strong>volumétrie</strong> (x2)</li>
+							<li><strong>SLA</strong> temps de réponse end-to-end</li>
+							<li>Lenteurs <strong>actuelles</strong></li>
+							<li>Augmentation du <strong>nombre d'utilisateurs</strong></li>
+							<li>Impact sur la <strong>durée des batchs</strong></li>
+							<li><strong>Latence et temps de réponse</strong> pour les utilisateurs distants</li>
+						</ol>
+					</div>
+					<aside class="notes">
+						Capacité du HUB actuel de doubler le nombre de transactions/jour
+						Capacité à gérer des OST avec 15000 clients en position
+						SLA de 5 secondes sur les actions en end-to-end
+						Lenteurs actuelles sur les ordres sur fonds
+						Ouverture de l'application à 1000 utilisateurs front-office
+						Doublement du nombre d'utilisateurs front-office
+						Impact de l'augmentation du nombre de titres sur la durée des batchs
+						Latence et temps de réponse pour les utilisateurs distants
+					</aside>
+				</section>
+				<section>
+					<h3>Et ensuite ?</h3>
+					<h3>Construire un plan</h3>
+					<p class="fragment">La carte vous aide à visualiser et à prioriser, elle ne "résout" pas les problèmes</p>
+					<p class="fragment">La réponse à chaque problème pourra (devra) être complètement différente !</p>
+					<p class="fragment">Chaque problème reste complexe et lié au reste du SI</p>
+				</section>
+				<section>
+					<h3>Diviser pour mieux régner</h3>
+					<p>2 patterns</p>
+					<ul>
+						<li class="fragment">Diviser/découpler : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
+						<li class="fragment">Simplifier : réduire la dimensionnalité (cas de tests, données)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img src="images/fact2/divide-and-conquer.png" />
+				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Diviser/découpler : un exemple</h3>
+					<img src="images/fact2/divide-and-conquer-2.png" />
+				</section>
+				<section>
+					<h3>Diviser/découpler : généralisons !</h3>
+					<img height="500px" src="images/fact2/divide-and-conquer-3.png" />
+				</section>
+				<!-- TODO: replace image instead of changing slide -->
+				<section>
+					<h3>Diviser/découpler : généralisons !</h3>
+					<img height="500px" src="images/fact2/divide-and-conquer-4.png" />
+				</section>
+				<section>
+					<h3>Simplifier : des exemples</h3>
+					<p class="fragment">Ne pas tester tous les cas fonctionnels</p>
+					<p class="fragment">Uniquement simuler les actions principales de l'utilisateur</p>
+					<p class="fragment">Faire le test de charge avec des données existantes</p>
+					<p class="fragment">Utiliser un jeu de données restreint pour les tests</p>
+					<p class="fragment">! Attention, certaines simplifications seront fausses. Il faut penser à <strong>documenter les hypothèses</strong> faîtes !</p>
+				</section>
+				<section>
+					<h3>Et maintenant ?</h3>
+					<p>Le problème est isolé et simplifié, comment je le résous ?</p>
+					<p  class="fragment">Ne prévoyez pas un test de charge pour tous les problèmes !</p>
+				</section>
+				<section>
+					<h3>Restez pragmatique !</h3>
+					<ul>
+						<li class="fragment">Analyse de l'existant</li>
+						<li class="fragment">Modélisation et extrapolation</li>
+						<li class="fragment">Test de l'existant</li>
+						<li class="fragment">Test de la cible</li>
+						<li class="fragment">Test end-to-end intégré de la cible</li>
+					</ul>
+					<img class="fragment" height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"/>
+					<br/>
+					<br/>
+					<p class="fragment">! Certains problèmes devront passer par plusieurs étapes, afin de limiter le risque !</p>
+					<p class="fragment">Ne pas sautez les étapes !</p>
+				</section>
+				<section>
+					<h3>Où pouvez-vous vous "planter" ?</h3>
+					<p>Rappel : vous ne pourrez pas garantir à 100% la performance</p>
+					<div class="fragment">
+						<p>Vous pouvez vous planter car :</p>
+						<ul>
+							<li>un risque est passé à travers le brainstorming</li>
+							<li>une simplification était trop "simpliste"</li>
+						</ul>
+					</div>
+					<div class="fragment">
+						<p>D'expérience, les mauvaises décisions étaient dues à :</p>
+						<ul>
+							<li>une mauvaise connaissance de la performance existante</li>
+							<li>une mauvaise connaissance des usages existants</li>
+						</ul>
+					</div>
+				</section>
+				<!-- Partie 3 -->
                 <section data-background="images/fact3/DontForgetBasics.jpg" style="background: rgba(255,255,255,0.9)">
                     <h3>Ne pas oublier les basics</h3>
 					<aside class="notes">
@@ -336,9 +476,9 @@ setUp(scn.inject(
                         C'est le seul moyen de réutiliser ces résultats dans des conclusions plus larges
                     </aside>
                 </section>
-				<section>
-					<h1>Fact #4</h1>
-                    Probablement commencer par l'exemple de la latence avec MQSeries
+				<!-- Partie 4 -->
+				<section data-background="images/fact4/tests-end-to-end.jpg" style="background: rgba(255,255,255,0.9)">
+					Comment (quand même) tester en end-to-end ?
 				</section>
                 <section>
                     <h3>Les problèmes faibles prennent de l'ampleur au niveau d'un SI</h3>
@@ -415,21 +555,21 @@ Call HTTP Ressources : For a total of 0.0 ms.
 						</code></pre>
 					</section>
 					<section>
-						<h3>Et concrêtement</h3>
+						<h3>Et concrêtement ? </h3>
 						<img src="images/fact4/DockerTcp80.png" />
 					</section>
 					<section>
-						<h3>Et concrêtement</h3>
+						<h3>Et concrêtement ?</h3>
 						<img src="images/fact4/DockerTcp9093.png" />
 					</section>
 					<section><img src="images/fact4/Peage.jpg"></section>
 					<section>
-						<h3>De la simulation d'une DMZ</h3>
+						<h3>Nous avons simulé une DMZ un peu pointilleuse</h3>
 						<img src="images/fact4/DMZ.png" />
 					</section>
 				</section>
                 <section>
-                    <h3>Les problèmes faibles prennent de la lenteur au niveau d'un SI</h3>
+                    <h3>En synthèse, les problèmes faibles peuvent devenir critiques au niveau d'un SI</h3>
                     <ul>
                         <li class="fragment">Latence</li>
                         <li class="fragment">N1 requêtes</li>
@@ -437,342 +577,156 @@ Call HTTP Ressources : For a total of 0.0 ms.
                     </ul>
                 </section>
 				<section>
-                    <h1>Annexes mise en page</h1>
-                </section>
+					<p>Les tests end-to-end sont obligatoires car certains résultats (cf. PoC) peuvent défier l'intuition</p>
+					<div class="fragment">
+						<h3 >Disclaimer</h3>
+						<p>Les tests end-to-end sont complexes. Ceci ne se veut pas une méthode systémique mais un inventaire
+							d'outils à disposition, ainsi qu'un REX sur leur efficacité</p>
+					</div>
+				</section>
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h3>Outil #1 : Analyse de la production existante</h3>
+					<p class="fragment">Analyse des latences entre systèmes</p>
+					<p class="fragment">Identification du goulet d'étranglement</p>
+					<p class="fragment">Découverte des problèmes de design</p>
+					<p class="fragment">Évaluation de la capacité du système</p>
 				</section>
-
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+					<h3>Outil #1 : Analyse de la production existante</h3>
+					<p>Exemple de l'évaluation de la capacité du système</p>
+					<img src="images/fact4/order-throughput.png" />
 				</section>
-
-				<!-- Example of nested vertical slides -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+					<h3>Outil #1 : mon REX</h3>
+					<p class="fragment">Souvent faîte trop tard...</p>
+					<p class="fragment">Dur à vendre, pourtant ROI elevé</p>
+					<p class="fragment">Commencez petit...</p>
+					<p class="fragment">Attention à la répartition de la charge !</p>
 				</section>
-
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
+					<h3>Outil #1 : attention aux chiffres !</h3>
+					<!-- TODO add image comparison -->
 				</section>
-
 				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+					<h3>Outil #1 : attention aux chiffres !</h3>
+					<!-- TODO add image comparison -->
 				</section>
-
 				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
+					<h3>Outil #2 : Benchmark unitaire</h3>
+					<p><em>Définition : mesure de la réponse à une transaction unitaire</em></p>
 				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
 				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
+					<h3>Outil #2 : Benchmark unitaire</h3>
+					<p>Exemple d'analyse</p>
+					<img height="200px" src="images/fact4/response-time.png" />
+					<div class="fragment">
+						<p>Une représentation en "flame graph" est également adaptée</p>
+						<img height="150px" src="images/fact4/flame-graph.png" />
+					</div>
 				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
 				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
+					<h3>Outil #2 : mon REX</h3>
+					<p class="fragment">La plupart des problèmes de design apparaissent en unitaire</p>
+					<p class="fragment">Faîtes-en plusieurs...</p>
+					<p class="fragment">Attention à ne pas faire de test de charge avant !</p>
+					<p class="fragment">S'il ne faut en garder qu'un, gardez celui-ci !</p>
 				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
+				<aside class="notes">
+					Ex. problème GTX
+					Parallèle avec test d'un seul système
+				</aside>
 				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
+					<h3>Outil #3 : le Dirac</h3>
+					<img height="400px" src="images/fact4/dirac.png" />
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						Peak de N transactions
+						ou 1 transaction sur un gros volume
+					</aside>
+				</section>
+				<section>
+					<h3>Outil #3 : le Dirac</h3>
+					<p>Exemple d'analyse</p>
+					<img height="400px" src="images/fact4/dirac-example.png" />
+				</section>
+				<section>
+					<h3>Outil #3 : mon REX</h3>
+					<p class="fragment">Le complément parfait du test unitaire</p>
+					<p class="fragment">Plus simple à analyser qu'une journée de production</p>
+					<p class="fragment">Teste également la robustesse du système</p>
+					<p class="fragment">Greffez-vous sur les tests fonctionnels !</p>
+				</section>
+				<section>
+					<h3>Outil #4 : "rejeu" d'une journée de production</h3>
+					<img height="500px" src="images/fact4/replay-production.png" />
+					<p style="position: absolute; top:450px; left: 200px; height:50px; width:600px; font-size:1.5em; color:blue;" class="fragment">simplifiée bien sûr !</p>
+				</section>
+				<section>
+					<h3>Outil #4 : mon REX</h3>
+					<p class="fragment">Difficile à analyser, notamment les écarts</p>
+					<p class="fragment">Difficile à interpréter</p>
+					<p class="fragment">En dernier, en impliquant le support métier</p>
+				</section>
+				<section>
+					<h3>Outil #1 et #4 : retour aux bases</h3>
+					<p class="fragment">La décomposition en unitaire et Dirac simplifie grandement l'analyse</p>
+				</section>
+				<section>
+					<h3>Outil #5 : mettre en production</h3>
+					<p class="fragment">Tout ce qui peut être mis en production par avance doit l'être</p>
+					<p class="fragment">Pensez votre stratégie de migration pour monter en charge progressivement</p>
+					<p class="fragment">Inspirez vous des Géants du Web (feature flipping, dark launch, canary)</p>
+				</section>
+				<section>
+					<h3>Que faut-il mesurer ?</h3>
+					<!-- TODO -->
+					<p class="fragment">Temps entrée / sortie de chaque système</p>
+					<p class="fragment">NMON (incl. TOP)</p>
+					<p class="fragment">à complèter si nécessaire...</p>
+				</section>
+				<section>
+					<h3>Que faut-il analyser ?</h3>
+					<!-- TODO -->
+					<img />
+					<p>Throughput, temps de réponse/charge</p>
+					<aside class="notes">
+						Analyse auto
+						Sur HW juste sanity check (TOP, CPU, RAM)
 					</aside>
 				</section>
 
 				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+					<h3>Peut-on extrapoler (à la production) ?</h3>
+					<p class="fragment">Beaucoup d'extrapolations différentes possibles</p>
+					<p class="fragment">Environnement, concurrence, simplifications...</p>
+					<p class="fragment">Mon expérience : OUI (sauf le sizing machine)</p>
+					<p class="fragment">mais attention de rester "linéaire" dans vos tests !</p>
 				</section>
-
 				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
+					<h3>Où pouvez-vous vous "planter" ?</h3>
+					<p>Rappel : vous ne pourrez pas garantir à 100% la performance</p>
 					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+						<li class="fragment">si vous ne faîtes pas assez d'unitaire</li>
+						<li class="fragment">si votre approche n'est pas assez "data-driven"</li>
+						<li class="fragment">si vous n'avez pas assez simplifié / découplé</li>
 					</ul>
 				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+				<!-- Conclusion -->
+				<section>
+					<h3>Conclusion</h3>
+					<ul>
+						<li>Commencez petit</li>
+						<li>Mesurez</li>
+						<li>Généralisez : oui mais....</li>
+					</ul>
 				</section>
+                <section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
+                    Reste à attendre la mise en production...
+                    <aside class="notes">
+                        Désormais vous êtes beaucoup mieux outillés pour gérer les problèmes de performance
+                        en production
+                    </aside>
+                </section>
+
 
 			</div>
 
@@ -790,6 +744,7 @@ Reveal.addEventListener( 'customevent', function() {
 				progress: true,
 				history: true,
 				center: true,
+				slideNumber: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
