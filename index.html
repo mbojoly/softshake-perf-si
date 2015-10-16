@@ -473,21 +473,6 @@ setUp(scn.inject(
 				<section data-background="images/fact4/tests-end-to-end.jpg" style="background: rgba(255,255,255,0.9)">
 					Comment (quand même) tester en end-to-end ?
 				</section>
-                <section>
-                    <section>
-                        <h3>DEMO : une application</h3>
-                        <p>5 appels en base de données, 1 traitement</p>
-                    </section>
-                    <section>
-					<pre><code data-trim contenteditable class="shell" >
-                        curl -X POST \
-                        -H "Accept: applicaiton/json" \
-                        -H "Content-Type: application/json" \
-                        -d '{"cpuIntensiveComputationsDuration":50, "databaseCallsNumber":5, "databaseCallDuration":10 }' \
-                        http://192.168.99.100:8080/compute
-                    </code></pre>
-                    </section>
-                </section>
                <section>
 					<section>
 						<h3>DEMO Quizz : quel est le temps de réponse d'une application ?</h3>
