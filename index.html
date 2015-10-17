@@ -17,6 +17,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/octo.css" id="theme">
+		<link rel="stylesheet" href="css/bootstrap.css">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -47,15 +48,30 @@
 					<p>Softshake, 22 octobre 2015</p>
 				</section>
                 <section>
-                    <p>
-                        <h1>Marc BOJOLY</h1>
-                        OCTO Technology Paris, Manager et consultant
-                        Co-fondateur du Performance User Group Paris
-                    </p>
-                    <p>
-                        <h1>Cyril PICAT</h1>
-                        OCTO Technology Lausanne, consultant
-                    </p>
+					<div class="row">
+						<h3>Marc BOJOLY</h3>
+					</div>
+					<div class="row" style="font-size:50%;">
+						<div class="col-sm-6">
+							<p>OCTO Technology Paris, manager et consultant</p>
+							<p>Co-fondateur du Performance User Group Paris
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-3"></div>
+								<div class="col-sm-3"><img src="images/introduction/logo_PERFUG.png" height="72em;" alt="Performance User Group Paris" /></div>
+								<div class="col-sm-3"><img src="images/introduction/logo_RDYAP.png" height="72em;" alt="Tribu RDYAP" /></div>
+								<div class="col-sm-3"></div>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height:2em;"></div>
+					<div class="row">
+						<h3>Cyril PICAT</h3>
+					</div>
+					<div class="row" style="font-size:50%;">
+						<p>OCTO Technology Lausanne, consultant</p>
+					</div>
                 </section>
 				<section>
 					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
@@ -432,25 +448,25 @@
 					<p>Modélisation de la charge : comment l'utiliser ?</p>
 					Définissez dans vos tests d'injection locaux le nombre d'utilisateurs "simultanés" et le temps de réflexion
 					<pre><code data-trim contenteditable class="scala" >
-val clientSearchChain = group("client_search_page") {
-	exec(http("client_search_html")
-	.get("""/ebankingAdmin/acibf/root/contract/contractlist/""")
-}
-).pause(7,8) //Pause between 7 and 8 seconds
+					val clientSearchChain = group("client_search_page") {
+						exec(http("client_search_html")
+						.get("""/ebankingAdmin/acibf/root/contract/contractlist/""")
+					}
+					).pause(7,8) //Pause between 7 and 8 seconds
 
-val scn = scenario("AdminSimulation")
-	.repeat(1) { //Beware of the coordinated omission
-		exitBlockOnFail {
-			exec(loginChain)
-			.exec(clientSearchChain)
-            //No logout, 90% of users don't
-		}
-	}
+					val scn = scenario("AdminSimulation")
+						.repeat(1) { //Beware of the coordinated omission
+							exitBlockOnFail {
+								exec(loginChain)
+								.exec(clientSearchChain)
+								//No logout, 90% of users don't
+							}
+						}
 
-setUp(scn.inject(
-    rampUsers(120).over(60), //Needs to be adapted to your scenario
-).protocols(httpProtocol)
-</code></pre>
+					setUp(scn.inject(
+						rampUsers(120).over(60), //Needs to be adapted to your scenario
+					).protocols(httpProtocol)
+					</code></pre>
 					<aside class="notes">
                         Coordinated Omission, c'est quant ton injecteur réduit sa charge proportionnellement à
                         la lenteur de ton applicatif en charge. Ça arrive avec LoadRunner parce qu'il compte en
