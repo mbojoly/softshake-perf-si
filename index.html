@@ -541,7 +541,6 @@ setUp(scn.inject(rampUsers(120).over(60))).protocols(httpProtocol) //This will g
                <section>
 					<section>
 						<h3>DEMO Quizz : quel est le temps de réponse d'une application ?</h3>
-                        <p>1 application</p>
                         <p>70 ms. de traitement</p>
 						<p>7 appels en base de données, 14 ms. chacuns</p>
 					</section>
@@ -555,7 +554,7 @@ http://$HOST:8080/compute
                     </section>
                    <section>
                        Temps de réponse
-                       <code><pre data-trim contenteditable class="sh">
+                       <pre><code data-trim contenteditable class="sh">
 $ ./sh/poc1.sh
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -564,7 +563,7 @@ $ ./sh/poc1.sh
 Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
 Call the database 7 times during 14 ms. each for a total of 401 ms.
 CPU intensive compute 69ms.
-                        </pre></code>
+                        </code></pre>
                    </section>
                    <section>
                        Détail de l'exécution
@@ -729,7 +728,7 @@ http://$HOST:8080/compute
                         </code></pre>
                     </section>
                     <section>
-                        <code><pre contenteditable class="sh">
+                        <pre><code contenteditable class="sh">
 $ ./sh/poc2.sh
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -767,7 +766,7 @@ Call HTTP Ressources : {
 For an HTTP ressources total of 1126.0 ms.
 Call the database 7 times during 14 ms. each for a total of 116 ms.
 CPU intensive compute 68ms.
-                        </pre></code>
+                        </code></pre>
                     </section>
                 </section>
                 <section>
@@ -776,73 +775,60 @@ CPU intensive compute 68ms.
                         <img src="images/fact4/DMZ.png" />
                     </section>
                     <section>
-                        <h3>DEMO & Quizz : quel est le temps de réponse de la même chaîne dans une modélisation plus proche de la réalité ?</h3>
-                        <p>7 applications identiques à la précédente (70 ms. de traitement, 7 x 10 ms. de BD)</p>
-                        <p>Appels synchrones séquentiels</p>
-                    </section>
-					<section>
                         <pre><code data-trim contenteditable class="sh" >
-$ sudo docker-machine ssh default
-$$ sudo tc qdisc add dev docker0 root netem delay 10ms
-$$ sudo tc qdisc show dev docker0
-$$ #After demo
-$$ sudo tc qdisc del root dev docker0
-					    </code></pre>
+                            $ sudo docker-machine ssh default
+                            $$ sudo tc qdisc add dev docker0 root netem delay 10ms
+                            $$ sudo tc qdisc show dev docker0
+                            $$ #After demo
+                            $$ sudo tc qdisc del root dev docker0
+                        </code></pre>
                     </section>
                     <section>
                         Temps de réponse
-                        <code><pre data-trim contenteditable class="sh">
-$ ./sh/poc2.sh
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  1417  100  1171  100   246    328     69  0:00:03  0:00:03 --:--:--   328
-Call HTTP Ressources : {
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 394 ms.
-        CPU intensive compute 69ms.
-{,
-{
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 398 ms.
-        CPU intensive compute 64ms.
-{,
-{
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 397 ms.
-        CPU intensive compute 68ms.
-{,
-{
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 396 ms.
-        CPU intensive compute 67ms.
-{,
-{
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 402 ms.
-        CPU intensive compute 61ms.
-{,
-{
-        Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
-        Call the database 7 times during 14 ms. each for a total of 397 ms.
-        CPU intensive compute 68ms.
-{,
-For an HTTP ressources total of 3059.0 ms.
-Call the database 7 times during 14 ms. each for a total of 398 ms.
-CPU intensive compute 68ms.
-                        </pre></code>
+                        <pre><code data-trim contenteditable class="sh">
+                            $ ./sh/poc2.sh
+                            % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                            Dload  Upload   Total   Spent    Left  Speed
+                            100  1417  100  1171  100   246    328     69  0:00:03  0:00:03 --:--:--   328
+                            Call HTTP Ressources : {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 394 ms.
+                            CPU intensive compute 69ms.
+                            {,
+                            {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 398 ms.
+                            CPU intensive compute 64ms.
+                            {,
+                            {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 397 ms.
+                            CPU intensive compute 68ms.
+                            {,
+                            {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 396 ms.
+                            CPU intensive compute 67ms.
+                            {,
+                            {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 402 ms.
+                            CPU intensive compute 61ms.
+                            {,
+                            {
+                            Call HTTP Ressources : For an HTTP ressources total of 0.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 397 ms.
+                            CPU intensive compute 68ms.
+                            {,
+                            For an HTTP ressources total of 3059.0 ms.
+                            Call the database 7 times during 14 ms. each for a total of 398 ms.
+                            CPU intensive compute 68ms.
+                        </code></pre>
                     </section>
                     <section>
-                        <h3>POC & Quizz</h3>
+                        <h3>L'outil utilisé</h3>
                         <img src="images/fact4/PocSchema.png" />
-                        <aside class="notes">
-                            L'objectif de ce POC est de modéliser un SI pour voir l'impact de ces problèmes
-                            Pour cela nous avons utilisé docker pour représenter les applications au sein d'une seule VM
-                        </aside>
                     </section>
-				</section>
-                <section>
-                    <h3>Implémentation de ce POC</h3>
-                    <img src="images/fact4/DockerTcp9093.png" />
                 </section>
                 <section>
                     <h3><img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">   De faibles problèmes peuvent devenir critiques au niveau d'un SI</h3>
@@ -1000,7 +986,7 @@ CPU intensive compute 68ms.
                     <p><a href="#/32">Exemples de lois de poisson</a> : <a href="https://fr.wikipedia.org/wiki/Loi_de_Poisson">Wikipedia</p>
                     <p><a href="#/33">Cycle de diffusion de l'innovation</a> : <a href="https://fr.wikipedia.org/wiki/Everett_Rogers">Wikipedia</a></p>
                     <p><a href="#/34">Traffic sur Internet</a> : <a href="http://www.libstat.com/pages/heure.htm">Libstat</a></p>
-                    <p><a href="#/37">Tests end-to-end</a> : <a href="https://www.youtube.com/watch?v=7BVr6LaC_HQ">Domino Rally</a></p>
+                    <p><a href="#/37">Tests end-to-end</a> : <a href="https://www.youtube.com/watch?v=7BVr6LaC_HQ">Youtube : Spectacular Domino Rally Stunt Screen Link 4:51</a></p>
                     <p><a href="#/5">Tous les modèles sont faux certains sont utiles</a> : <a href="http://www.morguefile.com/archive/display/940045">Morguefile</a></p>
                     <p><a href="#/56">The OCTO Way</a> : <a href="http://www.octo.com/fr/edito">(c) OCTO Technology 2015 </a></p>
                 </section>
