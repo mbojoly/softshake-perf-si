@@ -107,7 +107,7 @@
 					<table style="font-size:85%;">
 						<tr>
 							<td>Nier l'existence du problème
-							<td>On a bien travaillé, cela va passer</td>
+							<td>On a bien travaillé, ça va passer</td>
 						</tr>
 						<tr>
 							<td>Nier l'existence de solutions</td>
@@ -250,14 +250,9 @@
 					Savoir fixer ses priorités
 				</section>
 				<section>
-					<div style="width: 50%; height: 100%; float: left">
-						<img src="images/fact2/vertiginous3.jpg" />
-					</div>
-					<h3>Les problèmes peuvent sembler vertigineux</h3>
-					<div class="fragment">
-						<p>Préférer l'exhaustivité à la précision</p>
-						<p>Ne pas chercher de solutions</p>
-						<p>Timeboxer !</p>
+					<div class="row">
+						<img class="col-sm-6" src="images/fact2/vertiginous3.jpg" />
+						<h3 class="col-sm-6" style="margin-top:190px">Les problèmes peuvent sembler vertigineux</h3>
 					</div>
 					<aside class="notes">
 						Volume d'ordres, nombre de clients, nombre d'utilisateurs concurrents,
@@ -266,31 +261,42 @@
 					</aside>
 				</section>
 				<section>
-					<h3>Il faut "cadrer" le chantier</h3>
-					<p>Avoir une vue précise des volumes existants et cibles</p>
-					<p>Lister les problèmes existants</p>
-					<p>Brainstormer sur les problèmes potentiels</p>
-					<aside class="notes">
-					<h3>Comment y parvenir ?</h3>
-					<p>Entretiens utilisateurs</p>
-					<p>Entretiens IT</p>
+					<div class="row">
+						<img class="col-sm-6" src="images/fact2/vertiginous3.jpg" />
+						<div class="col-sm-6" style="padding-left:50px;">
+							<h3>Il faut "cadrer" le chantier</h3>
+							<ul>
+								<li>Factualiser les volumes existants et cibles</li>
+								<li>Lister les problèmes existants</li>
+								<li>Brainstormer sur les problèmes potentiels</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">					
+						<p>En largeur pas en profondeur</p>
+						<p>Ne pas chercher de solutions</p>
+						<p>Timeboxer !</p>
+
+						<h3>Comment y parvenir ?</h3>
+						<p>Entretiens utilisateurs</p>
+						<p>Entretiens IT</p>
 					</aside>
 				</section>
 				<section>
-					<div style="width: 70%; float: left; margin-left:-100px; margin-top:50px; margin-right:10px;">
-						<img width="1050px" height="600px" src="images/fact2/application_architecture_risks.png" />
-					</div>
-					<div style="width: 35%; float: right; font-size: 0.80em;" >
-						<h3>Les problèmes "usuels"</h3>
-						<ol>
-							<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
-							<li>Augmentation de <strong>volumétrie</strong> (x2)</li>
-							<li><strong>SLA</strong> temps de réponse end-to-end</li>
-							<li>Lenteurs <strong>actuelles</strong></li>
-							<li>Augmentation du <strong>nombre d'utilisateurs</strong></li>
-							<li>Impact sur la <strong>durée des batchs</strong></li>
-							<li><strong>Latence et temps de réponse</strong> pour les utilisateurs distants</li>
-						</ol>
+					<div class="row">
+						<img class="col-sm-9" style="margin-left:-100px; margin-right:30px; margin-top:150px;" src="images/fact2/application_architecture_risks.png" />
+						<div class="col-sm-4" style="margin-left:30px; margin-right:-100px; font-size: 0.75em;" >
+							<h3>Les problèmes "usuels"</h3>
+							<ol>
+								<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
+								<li>Augmentation de <strong>volumétrie</strong> (x2)</li>
+								<li><strong>SLA</strong> temps de réponse end-to-end</li>
+								<li>Lenteurs <strong>actuelles</strong></li>
+								<li>Augmentation du <strong>nombre d'utilisateurs</strong></li>
+								<li>Impact sur la <strong>durée des batchs</strong></li>
+								<li><strong>Latence et temps de réponse</strong> pour les utilisateurs distants</li>
+							</ol>
+						</div>
 					</div>
 					<aside class="notes">
 						Capacité du HUB actuel de doubler le nombre de transactions/jour
@@ -329,7 +335,8 @@
 					<h3>Diviser/découpler : un exemple</h3>
 					<img height="500px" src="images/fact2/divide-and-conquer-2.png" />
 					<aside class="notes">					
-										<h3>Simplifier : des exemples</h3>
+					<p>Construire le test le plus simple possible dans votre contexte</p>
+					<h3>Simplifier : des exemples</h3>
 					<p>Ne pas tester tous les cas fonctionnels</p>
 					<p>Uniquement simuler les actions principales de l'utilisateur</p>
 					<p>Faire le test de charge avec des données existantes</p>
@@ -339,9 +346,9 @@
 				</section>
 				<section>
 					<h3>Et maintenant ?</h3>
+					<p >Ne prévoyez pas un test de charge pour tous les problèmes !</p>					
 					<aside class="notes">					
 					<p>Le problème est isolé et simplifié, comment je le résous ?</p>
-					<p >Ne prévoyez pas un test de charge pour tous les problèmes !</p>
 					</aside>
 				</section>
 				<section>
@@ -908,6 +915,7 @@ CPU intensive compute 68ms.
 					Loi de scalabilité universelle
 					Profil de la journée similaire
 					Détail
+					Moyenne -> médiane, percentile 95
 				</aside>	
 				</section>
 				<section>
@@ -918,6 +926,7 @@ CPU intensive compute 68ms.
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
 					<p><em>Définition : mesure de la réponse à une transaction unitaire</em></p>
+					<img class="fragment" src="images/fact4/low-throughput.png" />
 				</section>
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
@@ -974,12 +983,6 @@ CPU intensive compute 68ms.
 				<aside class="notes">
 					 (feature flipping, dark launch, canary release etc.)
 				</aside>
-				</section>
-				<section>
-					<h3>Que faut-il mesurer ?</h3>
-					<!-- TODO -->
-					<p>Temps entrée / sortie de chaque système</p>
-					<p class="fragment">à complèter si nécessaire...</p>
 				</section>
 				<!-- Conclusion -->
 				<section>
