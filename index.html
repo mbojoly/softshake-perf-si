@@ -41,27 +41,41 @@
 
 		<div class="reveal">
 
+			<!-- TIMING 22 octobre Softshake -->
+			<!-- Intro 2' (contexte CPI 1'30") -->
+			<!-- Idées reçues 4' -->
+			<!-- Part 1 Monde parfait 4' -->
+			<!-- Part 2 Démarche 8' -->
+			<!-- Part 3 BaBa Unitaire 8' -->
+			<!-- Part 4 PoC 8' -->
+			<!-- Part 4 Outils 9' -->
+			<!-- Conclusion 2' -->
+			<!-- TOTAL 45' -->
+				
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+                <!-- MBO -->
 				<section>
 					<h2>Comment tester et optimiser la performance d'un SI ?</h2>
-					<p>Softshake, 22 octobre 2015</p>
+					<img src="images/introduction/logo-softshake.png" />
+					<img src="images/introduction/logo-softshake-2.jpeg" />
+					<p>22 octobre 2015</p>
 				</section>
                 <section>
 					<div class="row">
 						<h3>Marc BOJOLY</h3>
 					</div>
-					<div class="row" style="font-size:50%;">
-						<div class="col-sm-6">
+					<div class="row" style="font-size:70%;">
+						<div class="col-sm-9">
 							<p>OCTO Technology Paris, manager et consultant</p>
 							<p>Co-fondateur du Performance User Group Paris
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-3">
 							<div class="row">
-								<div class="col-sm-3"></div>
+								<div class="col-sm-1"></div>
 								<div class="col-sm-3"><img src="images/introduction/logo_PERFUG.png" height="72em;" alt="Performance User Group Paris" /></div>
+								<div class="col-sm-1"></div>
 								<div class="col-sm-3"><img src="images/introduction/logo_RDYAP.png" height="72em;" alt="Tribu RDYAP" /></div>
-								<div class="col-sm-3"></div>
 							</div>
 						</div>
 					</div>
@@ -69,15 +83,25 @@
 					<div class="row">
 						<h3>Cyril PICAT</h3>
 					</div>
-					<div class="row" style="font-size:50%;">
+					<div class="row" style="font-size:70%;">
 						<p>OCTO Technology Lausanne, consultant</p>
 					</div>
                 </section>
+                <!-- CPI -->
 				<section>
 					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
-					<img src="images/context/application_architecture.png" />
+					<img height="500px" src="images/context/application_architecture.png" />
+					<aside class="notes">
+						REX d'un projet d'1 an
+						Banques ne font pas tout en interne, reposent sur des plateformes de services partagées
+						pour réduire les coûts
+						Plateforme partagée pour courtage et dépôt des titres, multi-banques
+						Arrivée d'une nouvelle banque
+						Problématique : cette nouvelle banque vient avec des volumes équivalents à ceux de toutes les
+						autre banques
+					</aside>
 				</section>
-				<!-- TODO: replace image instead of changing slide -->
+                <!-- CPI -->
 				<section>
 					<h3>Quelques chiffres</h3>
 					<p>Clients : <strong>x10</strong></p>
@@ -86,12 +110,18 @@
 					<p>Titres : <strong>+50%</strong></p>
 					<p>Ordres de Bourse : <strong>x2</strong></p>
 					<aside class="notes">
-						<p>et les effets indirects : opérations sur titres etc.</p>
+						L'autre caractéristique : banque de détail vs banque privée
+						10x plus de clients
 					</aside>
 				</section>
+                <!-- CPI -->
 				<section>
 					<h3>Le projet : migration d'une banque vers une nouvelle plateforme titres</h3>
-					<img src="images/context/application_architecture_technos.png" />
+					<img height="500px" src="images/context/application_architecture_technos.png" />
+					<aside class="notes">
+						paysage techno mixte: CBS sur Mainframe (custom ou progiciel) et systèmes construits autour en 
+						technos plus récentes (Java)
+					</aside>
 				</section>
                 
 				<section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
@@ -172,7 +202,7 @@
                     <ul>
                         <li>Comment adapter vos pré-requis à vos enjeux</li>
                         <li>Comment aborder les tests de charge dans un SI</li>
-                        <li>Comment ne pas être piégé par les diagnostics préconçus</li>
+                        <li>Comment ne pas être piégé les diagnostic préconçus</li>
                     </ul>
 
                     <aside class="notes">
@@ -269,21 +299,26 @@
                     </aside>
                 </section>
 				<!-- Partie 2 -->
+                <!-- CPI -->
 				<section data-background="images/fact2/priorities_sign.jpg" style="background: rgba(255,255,255,0.9)">
 					Savoir fixer ses priorités
+					<aside class="notes">
+						sorti de ce monde parfait, on va parler dans cette seconde partie de comment
+						aborder le chantier performances
+					</aside>
 				</section>
-				<section>
+				<section data-transition="none">
 					<div class="row">
 						<img class="col-sm-6" src="images/fact2/vertiginous3.jpg" />
 						<h3 class="col-sm-6" style="margin-top:190px">Les problèmes peuvent sembler vertigineux</h3>
 					</div>
 					<aside class="notes">
-						Volume d'ordres, nombre de clients, nombre d'utilisateurs concurrents,
+						Volumétrie,nombre d'utilisateurs concurrents,
 						capacité à comptabiliser avant la clôture comptable, durée de la nuit batch,
-						impact sur les temps de réponse, latence réseau etc.
+						impact sur les temps de réponse, capacité machine, latence réseau etc.
 					</aside>
 				</section>
-				<section>
+				<section data-transition="none">
 					<div class="row">
 						<img class="col-sm-6" src="images/fact2/vertiginous3.jpg" />
 						<div class="col-sm-6" style="padding-left:50px;">
@@ -295,20 +330,23 @@
 							</ul>
 						</div>
 					</div>
-					<aside class="notes">					
-						<p>En largeur pas en profondeur</p>
-						<p>Ne pas chercher de solutions</p>
-						<p>Timeboxer !</p>
+					<aside class="notes">
+						Bases du cadrage
+						- En largeur pas en profondeur
+						- Ne pas chercher de solutions
+						- Timeboxer !
 
-						<h3>Comment y parvenir ?</h3>
-						<p>Entretiens utilisateurs</p>
-						<p>Entretiens IT</p>
+						Comment y parvenir ?
+						- Entretiens utilisateurs
+						- Entretiens IT volumes
+						
+						N'oubliez pas les pb existants !!
 					</aside>
 				</section>
 				<section>
 					<div class="row">
-						<img class="col-sm-9" style="margin-left:-100px; margin-right:30px; margin-top:150px;" src="images/fact2/application_architecture_risks.png" />
-						<div class="col-sm-4" style="margin-left:30px; margin-right:-100px; font-size: 0.75em;" >
+						<img class="col-sm-8" style="margin-left:-50px; margin-right:30px; margin-top:150px;" src="images/fact2/application_architecture_risks.png" />
+						<div class="col-sm-4" style="margin-left:30px; margin-right:-50px; font-size: 0.75em;" >
 							<h3>Les problèmes "usuels"</h3>
 							<ol>
 								<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
@@ -322,14 +360,9 @@
 						</div>
 					</div>
 					<aside class="notes">
-						Capacité du HUB actuel de doubler le nombre de transactions/jour
-						Capacité à gérer des OST avec 15000 clients en position
-						SLA de 5 secondes sur les actions en end-to-end
-						Lenteurs actuelles sur les ordres sur fonds
-						Ouverture de l'application à 1000 utilisateurs front-office
-						Doublement du nombre d'utilisateurs front-office
-						Impact de l'augmentation du nombre de titres sur la durée des batchs
-						Latence et temps de réponse pour les utilisateurs distants
+						Exemple de résultat sur mon projet
+						Carte avec une vue synthétique et priorisé des enjeux
+						Lire les termes en gras
 					</aside>
 				</section>
 				<section>
@@ -337,45 +370,56 @@
 					<p>La carte vous aide à visualiser et à prioriser, elle ne "résout" pas les problèmes</p>
 					<p>Chaque problème reste complexe et lié au reste du SI</p>
 					<aside class="notes">
-					<h3>Construire un plan</h3>
-					</aside>
+						p1
+					 	Il reste à construire un plan
+					 	p2
+					</aside>				
 				</section>
 				<section>
 					<h3>Diviser pour mieux régner</h3>
 					<p>2 patterns</p>
 					<ul>
-						<li class="fragment">Diviser/découpler : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
+						<li class="fragment"><b>Diviser/découpler</b> : passer d'un test de N systèmes à un test de k&lt;N systèmes (idéalement 1)</li>
 						<br/>
-						<li class="fragment">Simplifier : réduire la dimensionnalité (cas de tests, données etc.)</li>
+						<li class="fragment"><b>Simplifier</b> : réduire la dimensionnalité (cas de tests, données etc.)</li>
 					</ul>
+					<aside class="notes">
+					 	L'approche que nous avons pris pour résoudre la complexité/lien SI
+					</aside>				
 				</section>
-				<section>
+				<section data-transition="none">
 					<h3>Diviser/découpler : un exemple</h3>
 					<img height="500px" src="images/fact2/divide-and-conquer.png" />
+					<aside class="notes">
+					 	Un des enjeux : passage de 500 à 1500 users potentiels sur le réf titres
+					 	Si on regarde le problème complet
+					 	Dur à simuler
+					</aside>				
 				</section>
-				<!-- TODO: replace image instead of changing slide -->
-				<section>
+				<section data-transition="none">
 					<h3>Diviser/découpler : un exemple</h3>
 					<img height="500px" src="images/fact2/divide-and-conquer-2.png" />
 					<aside class="notes">					
-					<p>Construire le test le plus simple possible dans votre contexte</p>
-					<h3>Simplifier : des exemples</h3>
-					<p>Ne pas tester tous les cas fonctionnels</p>
-					<p>Uniquement simuler les actions principales de l'utilisateur</p>
-					<p>Faire le test de charge avec des données existantes</p>
-					<p>Utiliser un jeu de données restreint pour les tests</p>
-					<p>! Attention, certaines simplifications seront fausses. Il faut penser à <strong>documenter les hypothèses</strong> faîtes !</p>
+					 	Listes les simplifications faites:
+					 	- actions utilisateurs pas principales
+					 	- virer les interfaces dont la volumétrie n'était pas impactée par le nombre de users
+					 	Ccl : 2 systèmes 
+
+						D'autres simplification possibles
+
+						A retenir : construire le test le plus simple possible dans votre contexte
 					</aside>
 				</section>
 				<section>
 					<h3>Et maintenant ?</h3>
 					<p >Ne prévoyez pas un test de charge pour tous les problèmes !</p>					
 					<aside class="notes">					
-					<p>Le problème est isolé et simplifié, comment je le résous ?</p>
+						Le problème est isolé et simplifié, comment je le résous ?
+						Message
 					</aside>
 				</section>
 				<section>
-					<h3>Penser à d'autres outils</h3>
+					<h3>Pensez à d'autres outils</h3>
 					<div class="row" style>
 						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
 						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Analyse de l'existant</p>
@@ -386,50 +430,34 @@
 					</div>
 					<div class="row">
 						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de l'existant</p>
+						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de l'existant (données, systèmes)</p>
 					</div>
 					<div class="row">
 						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de la cible</p>
+						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de la cible (données, systèmes)</p>
 					</div>					
-					<img class="fragment" height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"/>
 					<aside class="notes">
-						<p>! Certains problèmes devront passer par plusieurs étapes, afin de limiter le risque !</p>
-						<p>Ne pas sautez les étapes !</p>
-					</aside>
-				</section>
-				<section>
-					<h3>Rester pragmatique !</h3>
-					<ul>
-						<li>Analyse de l'existant</li>
-						<li>Modélisation et extrapolation</li>
-						<li>Test de l'existant</li>
-						<li>Test de la cible</li>
-					</ul>
-					<img class="fragment" height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"/>
-					<aside class="notes">
-						<p>! Certains problèmes devront passer par plusieurs étapes, afin de limiter le risque !</p>
-						<p>Ne pas sautez les étapes !</p>
+						Reformuler
+
+						1er : obligatoire
+						2ème : meilleur outil si charge x1.5/x2
+						
+						Instantiable de plus en plus tard dans le projet
+						Utilisez-en plusieurs pour limiter mitiger le risque au plus tôt
+						Ex volume tx : on les a tous utilisés
 					</aside>
 				</section>
 				<section>
 					<h3>Où pouvez-vous vous "planter" ?</h3>
 					<div class="fragment">
-						<p>D'expérience, les mauvaises décisions étaient dues à :</p>
-						<ul>
-							<li>une mauvaise connaissance de la performance existante</li>
-							<li>une mauvaise connaissance des usages existants</li>
-						</ul>
+						<p>Mauvaise connaissance de la performance existante</p>
+						<p>Mauvaise connaissance des usages existants</p>
+					</div>
 					<aside class="notes">
-					<div>
-						<p>Vous pouvez vous planter car :</p>
-						<ul>
-							<li>un risque est passé à travers le brainstorming</li>
-							<li>une simplification était trop "simpliste"</li>
-						</ul>
-					</div>
+						un risque est passé à travers le brainstorming -> bof, arrive pas
+						une simplification était trop "simpliste" -> 2 raisons ci-dessus
+						positiver : si vous avez une bonne connaissance [...], vous ferez les bonnes simplifications
 					</aside>
-					</div>
 				</section>
 				<!-- Partie 3 -->
                 <section data-background="images/fact3/OBSMSR.jpg" style="background: rgba(255,255,255,0.9)">
@@ -498,7 +526,7 @@
 				<section>
 					<h3><img src="images/mdlcharge/Estimation_pos.png" alt="Scientifiquement" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">  Modélisation scientifique</h3>
                     <ul>
-                        <li>La vérité est en production</li>
+                        <li>La véritée est en production</li>
                         <li>Un modèle : moyenne ET percentile 99th</li>
                     </ul>
                     <img height="238" src="images/mdlcharge/Poisson_pmf.png" alt="Modèles statistiques">
@@ -512,7 +540,7 @@
 				</section>
 				<section>
 					<h3><img src="images/mdlcharge/Estimation_pos.png" alt="Scientifiquement" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">Modélisaton : soyez prédictifs</h3>
-					<p>Si vous n'avez pas de statistiques de production,</p>
+					<p>Si vous n'avez pas de statistiques production,</p>
                     <p>proposez un modèle de prévision du nombre d'utilisateurs</p>
 					<img height="300em" data-src="./images/mdlcharge/adopters.png" alt="Modèle de prévision">
 					<aside class="notes">
@@ -521,7 +549,7 @@
 				</section>
 				<section>
                     <h3><img src="images/mdlcharge/Estimation_pos.png" alt="Scientifiquement" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;"> Modélisation : soyez prédictifs</h3>
-                    <p>Si vous n'avez pas de statistiques de production,</p>
+                    <p>Si vous n'avez pas de statistiques production,</p>
                     <p>proposez un modèle de prévision de leur utilisation</p><img height="238" data-src="./images/mdlcharge/trafficInternet.png" alt="Modèle de prévision">
 					<aside class=   "notes">
                         Pour 100 utilisateurs : pas 100 utilisateurs simultanés
@@ -593,7 +621,7 @@ setUp(scn.inject(rampUsers(120).over(60))).protocols(httpProtocol) //This will g
 					<section>
 						<h3>DEMO Quizz : quel est le temps de réponse d'une application ?</h3>
                         <p>70 ms. de traitement</p>
-						<p>7 appels en base de données, 14 ms. chacun</p>
+						<p>7 appels en base de données, 14 ms. chacuns</p>
 					</section>
                     <section><pre><code data-trim contenteditable class="sh" >
 curl -X POST \
@@ -888,20 +916,29 @@ CPU intensive compute 68ms.
                     </section>
                 </section>
                 <section>
-                    <h3><img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">   De faibles problèmes peuvent devenir critiques au niveau d'un SI</h3>
+                    <h3 style="font-size:1.3em">
+                    	<img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;"/>   
+                    	Des problèmes "mineurs" peuvent devenir critiques à l'échelle d'un SI
+                    </h3>
                     <ul>
                         <li>Latence</li>
                         <li>N+1 SQL requêtes</li>
                         <li>N+1 appels à des applications externes</li>
                     </ul>
+					<h3 style="padding-top:30px; font-size:1.3em;">
+						<img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;"/>
+					   Les tests "end-to-end" sont obligatoires car certains résultats peuvent défier l'intuition
+					</h3>            
                 </section>
 				<section>
-					<p>Les tests end-to-end sont obligatoires car certains résultats (cf. PoC) peuvent défier l'intuition</p>
-					<div class="fragment">
-						<h3 >Disclaimer</h3>
-						<p>Les tests end-to-end sont complexes. Ceci ne se veut pas une méthode systémique mais un inventaire
-							d'outils à disposition, ainsi qu'un REX sur leur efficacité</p>
-					</div>
+					<h3>Boîte à outils pour les tests "end-to-end"</h3>
+					<h3>					
+						<img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">
+						Disclaimer
+						<img src="images/fact4/exclamation.png" alt="Attention" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">
+					</h4>
+					<p>Les tests end-to-end sont complexes. Ceci ne se veut pas une méthode systémique mais un <b>inventaire
+							d'outils à disposition</b>, ainsi qu'un <b>REX sur leur efficacité</b></p>
 				</section>
 				<section>
 					<h3>Outil #1 : Analyse de la production existante</h3>
@@ -909,44 +946,69 @@ CPU intensive compute 68ms.
 					<p>Identification du goulet d'étranglement</p>
 					<p>Découverte des problèmes de design</p>
 					<p>Évaluation de la capacité du système</p>
+					<aside class="notes">
+						On en a déjà parlé. J'insiste car d'autant plus vrai en end-to-end.
+						Vous allez pouvoir identifier <p>
+					</aside>	
 				</section>
-				<section>
+				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-1.png" />
 					<aside class="notes">
-					<h3>Outil #1 : mon REX</h3>
-					<p>Souvent faîte trop tard...</p>
-					<p>Commencez petit...</p>
-					<p>Attention à la répartition de la charge !</p>
+						Vous analysez la capacité actuelle
+						décrire le graph
 					</aside>
 				</section>
-				<section>
+				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-2.png" />
+					<aside class="notes">
+						plateau
+						modèle : capacité 250 tx en 5 minutes
+					</aside>
 				</section>
-				<section>
+				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-3.png" />
-				</section>
-				<section>
+					<aside class="notes">
+						parler du fait peaks supérieurs à la moyenne
+					</aside>	
+				</section >
+				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-4.png" />
+					<aside class="notes">
+						quoi en déduire en fonction de la volumétrie cible ?
+						OK
+					</aside>
 				</section>
-				<section>
+				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
-					<p>Exemple de l'évaluation de la capacité du système</p>
+					<p>Exemple de l'évaluation de la capacité maximale du système</p>
 					<img src="images/fact4/capacity-5.png" />
+					<aside class="notes">
+						KO
+						Attention marge : RTO!
+
+						Outil #1 : mon REX
+						Plus gros ROI
+						Souvent faîte trop tard...
+						Commencez petit...
+						Attention à la répartition de la charge !
+
+						Pb si loi de scalabilité universelle chère à Gunther
+					</aside>						
 				</section>
 				<section>
 					<h3>Outil #1 : attention aux chiffres !</h3>
 					<table class="fragment">
 						<tr>
 							<td>Volume</td>
-							<td>Temps de réponse</td>
+							<td>Temps de réponse moyen</td>
 						</tr>
 						<tr>
 							<td>1000 transactions</td>
@@ -957,37 +1019,45 @@ CPU intensive compute 68ms.
 							<td style="text-align:right">40s</td>
 						</tr>
 					</table>
-				<aside class="notes">
-					Loi de scalabilité universelle
-					Profil de la journée similaire
-					Détail
-					Moyenne -> médiane, percentile 95
-				</aside>	
+					<aside class="notes">
+						Attention à la répartition de la charge !
+
+						Pb si loi de scalabilité universelle chère à Gunther
+					</aside>						
 				</section>
 				<section>
 					<h3>Outil #1 : attention aux chiffres !</h3>
 					<img height="250px" src="images/fact4/peak-1.png"/>
 					<img height="250px" src="images/fact4/peak-2.png"/>
+					<aside class="notes">
+						Profil de la journée similaire, mais détail
+						Moyenne -> médiane, percentile 95					
+					</aside>	
 				</section>								
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
 					<p><em>Définition : mesure de la réponse à une transaction unitaire</em></p>
 					<img class="fragment" src="images/fact4/low-throughput.png" />
+					<aside class="notes">
+						Un benchmark unitaire peut paraitre surprenant pour un test de perf...
+						En fait même chose que test de charge
+						Ne jamais les faire si avec un user vous avez deja des lenteurs
+						On découvre >50% des problèmes de design en unitaire (perf faible)
+					</aside>	
 				</section>
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
 					<p>Exemple d'analyse</p>
-					<img height="200px" src="images/fact4/response-time.png" />
-					<div class="fragment">
-						<p>Une représentation en "flame graph" est également adaptée</p>
-						<img height="150px" src="images/fact4/flame-graph.png" />
-					</div>
-				<aside class="notes">
-					<h3>Outil #2 : mon REX</h3>
-					<p>La plupart des problèmes de design apparaissent en unitaire</p>
-					<p>Unitaire vs unique</p>
-					<p>S'il ne faut en garder qu'un, gardez celui-ci !</p>
-				</aside>
+					<img height="300px" src="images/fact4/response-time.png" />
+					<aside class="notes">
+						Exemple : expliquer qu'avec juste un timestamp entrée/sortie
+						temps de traitement OK sauf 1 -> bottleneck probable
+						on détecte des problèmes de latence entre systèmes
+						
+						Outil #2 : mon REX
+						Unitaire vs unique
+						S'il ne faut en garder qu'un, gardez celui-ci !
+					</aside>
 				</section>
 				<section>
 					<h3>Outil #3 : le pic de transactions</h3>
@@ -1000,35 +1070,41 @@ CPU intensive compute 68ms.
 				<section>
 					<h3>Outil #3 : le pic de transactions</h3>
 					<p>Exemple d'analyse</p>
-					<img height="400px" src="images/fact4/dirac-example.png" />
-				<aside class="notes">
-					<h3>Outil #3 : mon REX</h3>
-					<p>Le complément parfait du test unitaire</p>
-					<p>Plus simple à simuler qu'une charge réaliste</p>
-					<p>Pas toujours pertinent : ex. utilisateurs</p>
-					<p>Teste également la robustesse du système</p>
-					<p>Greffez-vous sur les tests fonctionnels !</p>
+					<img height="500px" src="images/fact4/dirac-example.png" />
+					<aside class="notes">
+						Exemple : 
+						bottleneck 1 : temps de traitement long
+						autre plus surprenant -> polling
+						
+						Résultat : parallélisme, estimation capacité du système, bottleneck						
+
+						Outil #3 : mon REX
+						Plus simple à simuler qu'une charge réaliste
+						Teste également la robustesse du système
+						Greffez-vous sur les tests fonctionnels !
 					</aside>
 				</section>
 				<section>
 					<h3>Outil #4 : "rejeu" d'une journée de production</h3>
 					<img height="500px" src="images/fact4/replay-production.png" />
-					<p class="fragment" style="position: absolute; top:450px; left: 200px; height:50px; width:600px; font-size:1.5em; color:blue;">simplifiée bien sûr !</p>
-				<aside class="notes">
-					<h3>Outil #4 : mon REX</h3>
-					<p>Difficile à analyser, notamment les écarts</p>
-					<p>Difficile à interpréter</p>
-					<p>En dernier, en impliquant le support métier</p>
-				</aside>
+					<p class="fragment" style="position: absolute; top:450px; left: 200px; height:50px; width:600px; font-size:1.5em;"><b>simplifiée bien sûr !</b></p>
+					<aside class="notes">
+						on l'a tenté. REX mitigé, même en simplifiant.
+						
+						Outil #4 : mon REX
+						Difficile à analyser, notamment les écarts
+						Difficile à interpréter (cf temps de réponse moyens)
+						Des fois nécessaires : en dernier, en impliquant le support métier
+					</aside>
 				</section>
 				<section>
 					<h3>Outil #5 : mettre en production</h3>
 					<p>Tout ce qui peut être mis en production par avance doit l'être</p>
 					<p>Pensez votre stratégie de migration pour monter en charge progressivement</p>
-					<p>Inspirez vous des Géants du Web</p>
-				<aside class="notes">
-					 (feature flipping, dark launch, canary release etc.)
-				</aside>
+					<p>Inspirez-vous des "Géants du Web"</p>
+					<aside class="notes">
+						patterns feature flipping, dark launch, canary release etc.
+					</aside>
 				</section>
 				<!-- Conclusion -->
 				<section>
