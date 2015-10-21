@@ -114,8 +114,8 @@
 				<section data-background="images/context/DSCN7614.jpg" style="background: rgba(255,255,255,0.9)">
 					Autant attendre la mise en production...
 					<aside class="notes">
-						Lorsqu'on parle de tests de performance sur un SI il y a beaucoup d'idées reçues qui font qu'on
-						attent la mise en production pour constater les problèmes
+						Entend souvent : pff, trop compliqué, trop cher
+						Autant attendre la production
 						Source : http://www.morguefile.com/archive/display/940045
 					</aside>
 				</section>
@@ -140,7 +140,10 @@
 						</tr>
 					</table>
 					<aside class="notes">
-						Je rapproche ces idées reçues des 6 types de méconaissances en analyse transactionnelle
+						On entend beaucoup de choses à propos des tests de charge
+						Méconnaissance : mécanisme inconscient => ne pas voir la réalité telle qu’elle est.
+						généralisations – ou des minimisations – ou encore de la grandiloquence et de l’emphase.
+						6 types de méconaissances en analyse transactionnelle
 						- Nier l'existence du problème
 						- Nier l'existence de solutions
 						- Nier la fiabilité des solutions
@@ -156,20 +159,29 @@
                         <li>Une pré-production identique à la production</li>
                         <li>Simuler l'ensemble des activités de la banque</li>
                     </ul>
-                    <aside class="notes">On entend beaucoup de choses à propos des tests de charge</aside>
+                    <aside class="notes">
+						=> Combatter ces idées reçues
+						Sans cela, cela ne sert à rien
+					</aside>
 				</section>
 				<section>
                     <h3>
                         Tests de charge : idée reçue <img src="images/fact1/Idee_recue.png" height="75em;" alt="Idée reçue" style="vertical-align:sub;">
                     </h3>
 					Tester en automatique ? Impossible même avec <em>&lt;un nom de produit ici&gt;</em>
+					<aside class="notes">
+						Très compliqué à l'échelle d'une appli alors à l'échelle d'un SI
+					</aside>
 				</section>
 				<section>
                     <h3>
                         Diagnostic : idée reçue <img src="images/fact1/Idee_recue.png" height="75em;" alt="Idée reçue" style="vertical-align:sub;">
                     </h3>
                     Les problèmes sont sur le mainframe
-                    <aside class="notes">Remplacez mainframe pas le nom du bouc émissaire idéal</aside>
+                    <aside class="notes">
+						Remplacez mainframe pas le nom du bouc émissaire idéal
+						Cyril vous montrera que ce n'est pas toujours le cas
+					</aside>
 				</section>
                 <section>
                     <h3>Ce sont des idées reçues <img src="images/fact1/Idee_recue.png" height="75em;" alt="Idée reçue" style="vertical-align:sub;" ></h3>
@@ -181,9 +193,9 @@
                     </ul>
 
                     <aside class="notes">
-                        Notre constat est qu'il s'agit d'idées reçues qui ne sont pas probablement valables dans tous les cas
-                        On vous montrera :
-                        - pourquoi 80% des problèmes peuvent être identifiés sur un environnement non représentatif
+                        Idées reçues qui n'empêchent pas de faire des tests de performance représentatifs
+						On vous montrera
+                        - 80% des problèmes peuvent être identifiés sur un environnement non représentatif
                         - quelques bonnes pratiques pour un test de charge automatisé au niveau d'un SI
                         - que pour un diagnostic il faut ne pas faire d'hypothèse mais systématiquement mesurer
                     </aside>
@@ -196,9 +208,9 @@
 						Antoine de Saint-Exupéry - Cahiers de Saint-Exupéry (1900-1944)
                     </blockquote>
                     <aside class="notes">
-						Fait#1 : il y a le monde idéal et le monde réel
+                        Alors commment faire ?
                         Je ne vais pas vous vendre du rêve, mais pour faire d'un rêve une réalité il faut quand même rêver
-                        un peu. Alors dans l'idéal qu'est-ce que je voudrais
+                        un peu. Alors dans l'idéal sur quoi je fonde un test de performance dans un SI
 						Source des images : http://ginacn.blogspot.fr/2006/05/petites-estrelles.html
 						https://en.wikipedia.org/wiki/Antoine_de_Saint-Exup%C3%A9ry
                     </aside>
@@ -207,7 +219,9 @@
                     <h3>Rêve <img src="images/fact1/reve.png" alt="Rêve" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">  : une vue intégrée de la performance</h3>
                     <img src="images/fact1/globalview.png" height="200%" width="200%" />
                     <aside class="notes">
-                    	Parler d'APM sur une application, étendre multi-systèmes
+                    	Une vue intégrée de la performance : comment se décompose le temps de réponse.
+                        OU = 80% de la solution
+                        Ex. sur du multi-tiers
                         Des outils commes les APM pour avoir une vue parfaite de l'application : comment circulent les
                         messages, où est passé le temps
                         Source Dynatrace
@@ -218,6 +232,7 @@
                     <img src="images/fact1/GoogleDapper.png" height="500em" />
                     <p style="font-size:50%">Google Dapper</p>
                     <aside class="notes">
+                        Impossible à large échelle, hors de Java/.NET => Non Google le fait (investissement)
                         Sources :
                         http://static.googleusercontent.com/media/research.google.com/fr//pubs/archive/36356.pdf
                         Donc oui, cela existe, j'aime bien la construction de Netflix qui permet de commencer petit
@@ -239,7 +254,11 @@
                             <img src="images/fact1/nmon.png" with="200%" alt="nmon">
                         </div>
                     </div>
-					<aside class="notes">APM versus outils artisanaux</aside>
+					<aside class="notes">
+                        VOUS avez déjà beaucoup d'informations que vous ignorez
+                        Cyril : beaucoup d'aggrégation de logs
+                        Outils systèmes produisent des logs
+                    </aside>
 				</section>
 				<section>
                     <h3>Rêve <img src="images/fact1/reve.png" alt="Rêve" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;">  : Tout ce qu'il faut pour faire les tests</h3>
@@ -248,6 +267,9 @@
                         <li>Des données migrées</li>
                         <li>Des personnes disponibles.... et colocalisées</li>
                     </ul>
+                    <aside class="notes">
+                        Dans l'idéal je veux tester mon système complet terminé pour garantir la performance
+                    </aside>
                 </section>
                 <section>
                     <h3><img src="images/fact1/reve.png" alt="Rêve" style="vertical-align:sub; padding:0px; margin:0px;" height="60em;"> Réalité : Les intangibles</h3>
@@ -260,6 +282,7 @@
                     <aside class="notes">
                         Certains éléments sont non négociables
                         Pour le reste il vous faudra être inventif (image de Mac Gyver)
+                        Travailler sur un système incomplet ça donne des résultats
                     </aside>
                 </section>
 				<!-- Partie 2 -->
@@ -445,7 +468,8 @@
                 <section data-background="images/fact3/OBSMSR.jpg" style="background: rgba(255,255,255,0.9)">
                     <h3>Bonnes pratiques de tests de charges (unitaires)</h3>
 					<aside class="notes">
-                       Casser l'idées reçues : automatiser est possible (e.g. Sikuli pour un client lourd) même si c'est long
+                       Diviser pour mieux régner, simplifier
+                       Mais besoin de tester en performance
                        Pas une session sur les tests de charge mais
                         Deux bonnes pratiques sont particulièrement importantes pour des tests de performance d'un SI
 					</aside>
@@ -513,12 +537,10 @@
                     <img height="238" src="images/mdlcharge/Poisson_pmf.png" alt="Modèles statistiques">
                     <p>Exemple de lois de Poisson</p>
 					<aside class="notes">
-						Source  : https://fr.wikipedia.org/wiki/Loi_de_Poisson#/media/File:Poisson_pmf.svg
-						Comment modéliser scientifiquement le comportement de mes utilisateurs
-                        La mesure d'un temps de réponse sera toujours statistique. En effet l'arrivée des utilsiateurs sera toujours aléatoire.
-						Tous les tests de charge vont donc reposer sur la mesure statistique du temps de réponse suite à une injection. 
-						Le modélisation des uti
-                        lisateurs est basée sur une statistique d'arrivée et une statistique d'un temps de réflexion (expliquer)
+						Modélisation : toujours statistique
+                        Ne vous contentez pas d'une moyenne, en particulier sur une longue période de temps
+                        Utilisez systématiquement le temps de réponse. Nb. utilisateurs comme temps de réponse
+                        Modèle plus avancé avec statistique de processus de poisson
 					</aside>
 				</section>
 				<section>
@@ -535,7 +557,8 @@
                     <p>Si vous n'avez pas de statistiques production,</p>
                     <p>proposez un modèle de prévision de leur utilisation</p><img height="238" data-src="./images/mdlcharge/trafficInternet.png" alt="Modèle de prévision">
 					<aside class=   "notes">
-					Par exemple basez vous sur des modèles métiers : quelle est l'utilisation classique d'internet ?
+                        Pour 100 utilisateurs : pas 100 utilisateurs simultanés
+					    Par exemple basez vous sur des modèles métiers : quelle est l'utilisation classique d'internet ?
 					<a href="http://www.libstat.com/pages/heure.htm">Libstat</a> 
 					<a href="F:\Users\mbojoly\Documents\MBO\2014.zip\2014\MyDrive\R2014-168 PARKEON - Tests de perfs Plateforme billettique Lille\4 - Documents de travail\ModeleMonteeEnCharge.xlsx">Image</a>
 					</aside>
@@ -575,8 +598,8 @@ setUp(scn.inject(rampUsers(120).over(60))).protocols(httpProtocol) //This will g
                         Comment fait-on pour manger un éléphant ? Bouchée par bouchée.
                     </blockquote>
                     <aside class="notes">
-                        Ne négligez pas les tests de charge unitaires (au sens application par application) : ils sont une
-                        brique de base pour maîtriser la performance du SI. La performance d'un SI c'est comme un
+                        Tests en charge application par application = brique de base
+                        La performance d'un SI c'est comme un
                         éléphant. Cela se mange bouchées par bouchées.
                         Choisissez vos tests de charge les le plus précisément possible pour
                         qu'ils soient simples, reproductibles, compréhensibles.
@@ -593,6 +616,7 @@ setUp(scn.inject(rampUsers(120).over(60))).protocols(httpProtocol) //This will g
                             <li>Diviser pour mieux régnier</li>
                             <li>Faire des tests de performance par application de façon scientifique</li>
                         </ul>
+                        En synthèse : pas d'idée reçue, simplifiez, tester application par application au besoin
                         Donc je devrais conclure : je fais la somme des temps de réponse de mes applications pour savoir
                         si mon ordre sera exécuté en moins de 3 s. comme attendu....
                         Et bien non. Des tests de bout en bout contre les comportements contre-intuitifs
@@ -837,6 +861,8 @@ CPU intensive compute 68ms.
 					<section>
 						<h3>Implémentation de ce Quizz</h3>
 						<img src="images/fact4/DockerTcp9093.png" />
+						<p>Diokles : An Information System scale performance simulator</p>
+						<p style="font-size:50%;">https://github.com/mbojoly/diokles</p>
 					</section>
                     <section>
                         <pre><code data-trim contenteditable class="sh" >
