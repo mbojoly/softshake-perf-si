@@ -42,7 +42,7 @@
 		<div class="reveal">
 
 			<!-- TIMING 22 octobre Softshake -->
-			<!-- Intro 2' -->
+			<!-- Intro 2' (contexte CPI 1'30") -->
 			<!-- Idées reçues 4' -->
 			<!-- Part 1 Monde parfait 4' -->
 			<!-- Part 2 Démarche 8' -->
@@ -57,7 +57,9 @@
                 <!-- MBO -->
 				<section>
 					<h2>Comment tester et optimiser la performance d'un SI ?</h2>
-					<p>Softshake, 22 octobre 2015</p>
+					<img src="images/introduction/logo-softshake.png" />
+					<img src="images/introduction/logo-softshake-2.jpeg" />
+					<p>22 octobre 2015</p>
 				</section>
                 <section>
 					<div class="row">
@@ -336,13 +338,15 @@
 
 						Comment y parvenir ?
 						- Entretiens utilisateurs
-						- Entretiens IT
+						- Entretiens IT volumes
+						
+						N'oubliez pas les pb existants !!
 					</aside>
 				</section>
 				<section>
 					<div class="row">
-						<img class="col-sm-9" style="margin-left:-100px; margin-right:30px; margin-top:150px;" src="images/fact2/application_architecture_risks.png" />
-						<div class="col-sm-4" style="margin-left:30px; margin-right:-100px; font-size: 0.75em;" >
+						<img class="col-sm-8" style="margin-left:-50px; margin-right:30px; margin-top:150px;" src="images/fact2/application_architecture_risks.png" />
+						<div class="col-sm-4" style="margin-left:30px; margin-right:-50px; font-size: 0.75em;" >
 							<h3>Les problèmes "usuels"</h3>
 							<ol>
 								<li><strong>Capacité</strong> en terme de nombre de transactions/jour</li>
@@ -366,7 +370,9 @@
 					<p>La carte vous aide à visualiser et à prioriser, elle ne "résout" pas les problèmes</p>
 					<p>Chaque problème reste complexe et lié au reste du SI</p>
 					<aside class="notes">
+						p1
 					 	Il reste à construire un plan
+					 	p2
 					</aside>				
 				</section>
 				<section>
@@ -388,24 +394,20 @@
 					 	Un des enjeux : passage de 500 à 1500 users potentiels sur le réf titres
 					 	Si on regarde le problème complet
 					 	Dur à simuler
-					 	Listes les simplifications faites:
-					 	- actions utilisateurs pas principales
-					 	- virer les interfaces dont la volumétrie n'était pas impactée par le nombre de users
-					 	Ccl : 2 systèmes 
 					</aside>				
 				</section>
 				<section data-transition="none">
 					<h3>Diviser/découpler : un exemple</h3>
 					<img height="500px" src="images/fact2/divide-and-conquer-2.png" />
 					<aside class="notes">					
-						Construire le test le plus simple possible dans votre contexte
-						D'autres exemples de simplification :
-					    - utiliser un jeu de données restreint pour les tests
-						- ne pas tester tous les cas fonctionnels
-					 	- faire le test de charge avec des données existantes
-					 	
-						! Attention, certaines simplifications seront fausses. 
-						documenter les hypothèses faîtes !
+					 	Listes les simplifications faites:
+					 	- actions utilisateurs pas principales
+					 	- virer les interfaces dont la volumétrie n'était pas impactée par le nombre de users
+					 	Ccl : 2 systèmes 
+
+						D'autres simplification possibles
+
+						A retenir : construire le test le plus simple possible dans votre contexte
 					</aside>
 				</section>
 				<section>
@@ -428,40 +430,21 @@
 					</div>
 					<div class="row">
 						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de l'existant (volumes, systèmes)</p>
+						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de l'existant (données, systèmes)</p>
 					</div>
 					<div class="row">
 						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de la cible (volumes, systèmes)</p>
+						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de la cible (données, systèmes)</p>
 					</div>					
-					<!--img class="fragment" height="250px" src="images/fact2/arrow.png" style="float:left; margin-left:150px;"-->
 					<aside class="notes">
-						Définir + exemples
-					</aside>
-				</section>
-				<section data-transition="none">
-					<h3>Restez pragmatique !</h3>
-					<div class="row" style>
-						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Analyse de l'existant</p>
-					</div>
-					<div class="row">
-						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Modélisation et extrapolation</p>
-					</div>
-					<div class="row">
-						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de l'existant (volumes, systèmes)</p>
-					</div>
-					<div class="row">
-						<img class="col-sm-3" style="padding-left:170px;" src="images/fact2/CadrageTechnique_pos.png" />
-						<p class="col-sm-9" style="text-align:left; padding-left:50px;">Test de charge de la cible (volumes, systèmes)</p>
-					</div>
-					<aside class="notes">
+						Reformuler
+
 						1er : obligatoire
 						2ème : meilleur outil si charge x1.5/x2
+						
+						Instantiable de plus en plus tard dans le projet
 						Utilisez-en plusieurs pour limiter mitiger le risque au plus tôt
-						Ex. capacité et volumétrie end-to-end
+						Ex volume tx : on les a tous utilisés
 					</aside>
 				</section>
 				<section>
@@ -473,6 +456,7 @@
 					<aside class="notes">
 						un risque est passé à travers le brainstorming -> bof, arrive pas
 						une simplification était trop "simpliste" -> 2 raisons ci-dessus
+						positiver : si vous avez une bonne connaissance [...], vous ferez les bonnes simplifications
 					</aside>
 				</section>
 				<!-- Partie 3 -->
@@ -963,7 +947,8 @@ CPU intensive compute 68ms.
 					<p>Découverte des problèmes de design</p>
 					<p>Évaluation de la capacité du système</p>
 					<aside class="notes">
-						On en a déjà parlé. J'insiste car d'autant plus vrai en end-to-end.						
+						On en a déjà parlé. J'insiste car d'autant plus vrai en end-to-end.
+						Vous allez pouvoir identifier <p>
 					</aside>	
 				</section>
 				<section data-transition="none">
@@ -971,9 +956,8 @@ CPU intensive compute 68ms.
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-1.png" />
 					<aside class="notes">
-						Vous analyser la capacité actuelle
+						Vous analysez la capacité actuelle
 						décrire le graph
-						parler du fait peaks supérieurs à la moyenne
 					</aside>
 				</section>
 				<section data-transition="none">
@@ -989,7 +973,10 @@ CPU intensive compute 68ms.
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
 					<img src="images/fact4/capacity-3.png" />
-				</section data-transition="none">
+					<aside class="notes">
+						parler du fait peaks supérieurs à la moyenne
+					</aside>	
+				</section >
 				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
 					<p>Exemple de l'évaluation de la capacité du système</p>
@@ -1001,12 +988,20 @@ CPU intensive compute 68ms.
 				</section>
 				<section data-transition="none">
 					<h3>Outil #1 : Analyse de la production existante</h3>
-					<p>Exemple de l'évaluation de la capacité du système</p>
+					<p>Exemple de l'évaluation de la capacité maximale du système</p>
 					<img src="images/fact4/capacity-5.png" />
 					<aside class="notes">
 						KO
 						Attention marge : RTO!
-					</aside>
+
+						Outil #1 : mon REX
+						Plus gros ROI
+						Souvent faîte trop tard...
+						Commencez petit...
+						Attention à la répartition de la charge !
+
+						Pb si loi de scalabilité universelle chère à Gunther
+					</aside>						
 				</section>
 				<section>
 					<h3>Outil #1 : attention aux chiffres !</h3>
@@ -1025,14 +1020,10 @@ CPU intensive compute 68ms.
 						</tr>
 					</table>
 					<aside class="notes">
-						Outil #1 : mon REX
-						Plus gros ROI
-						Souvent faîte trop tard...
-						Commencez petit...
 						Attention à la répartition de la charge !
 
 						Pb si loi de scalabilité universelle chère à Gunther
-					</aside>	
+					</aside>						
 				</section>
 				<section>
 					<h3>Outil #1 : attention aux chiffres !</h3>
@@ -1057,11 +1048,7 @@ CPU intensive compute 68ms.
 				<section>
 					<h3>Outil #2 : Benchmark unitaire</h3>
 					<p>Exemple d'analyse</p>
-					<img height="200px" src="images/fact4/response-time.png" />
-					<div class="fragment">
-						<p>Une représentation en "flame graph" est également adaptée</p>
-						<img height="150px" src="images/fact4/flame-graph.png" />
-					</div>
+					<img height="300px" src="images/fact4/response-time.png" />
 					<aside class="notes">
 						Exemple : expliquer qu'avec juste un timestamp entrée/sortie
 						temps de traitement OK sauf 1 -> bottleneck probable
@@ -1083,7 +1070,7 @@ CPU intensive compute 68ms.
 				<section>
 					<h3>Outil #3 : le pic de transactions</h3>
 					<p>Exemple d'analyse</p>
-					<img height="400px" src="images/fact4/dirac-example.png" />
+					<img height="500px" src="images/fact4/dirac-example.png" />
 					<aside class="notes">
 						Exemple : 
 						bottleneck 1 : temps de traitement long
