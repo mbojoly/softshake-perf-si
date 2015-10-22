@@ -6,3 +6,5 @@ Support de la présentation donné par Cyril Picat et Marc BOJOLY le 22 octobre 
 (C) OCTO Technology 2015
 
 Les icônes utilisés sont les icones d'OCTO Technology. Les sources des autres images sont précisées dans le dernier slide.
+
+La présentation a été réalisée avec https://github.com/hakimel/reveal.js/ under MIT license
