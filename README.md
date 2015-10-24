@@ -3,6 +3,7 @@
 
 Support de la présentation donné par Cyril Picat et Marc BOJOLY le 22 octobre 2015 à {{softshake}} 2015 à Genêve.
 La présentation est également disponible sur [Slideshare](http://fr.slideshare.net/MarcBojoly/softshake-2015-comment-tester-et-optimiser-la-performance-dun-si)
+L'outil pour la démonstration peut être trouvé sur github : [DIOKLES](https://github.com/mbojoly/diokles).
 
 (C) OCTO Technology 2015
 
